@@ -30,6 +30,21 @@ final class MainViewController: BaseViewController {
     
     override func configureUI() {
         view.backgroundColor = .white
+        
+        mainView.weatherCollectionView.delegate = self
+        mainView.weatherCollectionView.dataSource = self
+        mainView.weatherCollectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeatherCollectionViewCell.id)
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.id, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
+        return cell
     }
 }
 

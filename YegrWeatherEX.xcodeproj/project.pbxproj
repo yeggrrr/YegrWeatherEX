@@ -24,6 +24,7 @@
 		680082CB2C3EC8D200ADD884 /* ReusableProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CA2C3EC8D200ADD884 /* ReusableProtocol+.swift */; };
 		680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CC2C3ED14D00ADD884 /* MainView.swift */; };
 		680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CE2C3ED96600ADD884 /* UILabel+.swift */; };
+		680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		680082CA2C3EC8D200ADD884 /* ReusableProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableProtocol+.swift"; sourceTree = "<group>"; };
 		680082CC2C3ED14D00ADD884 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		680082CE2C3ED96600ADD884 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				680082C02C3EC37600ADD884 /* Extension */,
 				680082C12C3EC79B00ADD884 /* Base */,
 				680082BE2C3EC34400ADD884 /* Main */,
+				680082D22C3EE88600ADD884 /* ViewModel */,
 				6800829F2C3E64C900ADD884 /* Info.plist */,
 				680082B02C3E8D5500ADD884 /* APIKey.swift */,
 			);
@@ -96,8 +99,9 @@
 		680082BE2C3EC34400ADD884 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				680082CC2C3ED14D00ADD884 /* MainView.swift */,
 				680082952C3E64C800ADD884 /* MainViewController.swift */,
+				680082D32C3EE88A00ADD884 /* View */,
+				680082D42C3EE88F00ADD884 /* Cell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -126,6 +130,29 @@
 				680082C82C3EC88E00ADD884 /* BaseTableViewCell.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		680082D22C3EE88600ADD884 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		680082D32C3EE88A00ADD884 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				680082CC2C3ED14D00ADD884 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		680082D42C3EE88F00ADD884 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +240,7 @@
 			files = (
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
 				680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */,
+				680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */,
 				680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */,
 				680082962C3E64C800ADD884 /* MainViewController.swift in Sources */,
 				680082CB2C3EC8D200ADD884 /* ReusableProtocol+.swift in Sources */,

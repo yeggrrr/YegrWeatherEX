@@ -21,6 +21,9 @@ final class MainView: UIView {
     private let dividerView = UIView()
     
     private let everyThreeHoursView = UIView()
+    let everyThreeHoursImageView = UIImageView()
+    let everyThreeHoursLabel = UILabel()
+    let weatherCollectionView = UICollectionView(frame: .zero, collectionViewLayout: contentsCollectionViewLayout())
     
     private let weatherForecastView = UIView()
     
@@ -30,7 +33,8 @@ final class MainView: UIView {
         super.init(frame: frame)
         
         configureHierarchy()
-        configureLayout()
+        configureTopLayout()
+        configureBottomLayout()
         configureUI()
     }
     
@@ -51,21 +55,24 @@ final class MainView: UIView {
         topTitleView.addSubview(lowestTempLabel)
         
         backgroundView.addSubview(everyThreeHoursView)
+        everyThreeHoursView.addSubview(everyThreeHoursImageView)
+        everyThreeHoursView.addSubview(everyThreeHoursLabel)
+        everyThreeHoursView.addSubview(weatherCollectionView)
+        
         backgroundView.addSubview(weatherForecastView)
         
         addSubview(bottomButtonView)
     }
     
-    func configureLayout() {
+    func configureTopLayout() {
         let safeArea = safeAreaLayoutGuide
+        let scrollViewContent = scrollView.contentLayoutGuide
+        let scrollViewFrame = scrollView.frameLayoutGuide
         
         scrollView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeArea)
             $0.bottom.equalTo(bottomButtonView.snp.top)
         }
-        
-        let scrollViewContent = scrollView.contentLayoutGuide
-        let scrollViewFrame = scrollView.frameLayoutGuide
         
         backgroundView.snp.makeConstraints {
             $0.verticalEdges.equalTo(scrollViewContent.snp.verticalEdges)
@@ -119,11 +126,34 @@ final class MainView: UIView {
             $0.centerY.equalTo(dividerView.snp.centerY)
             $0.height.equalTo(35)
         }
+    }
+    
+    func configureBottomLayout() {
+        let safeArea = safeAreaLayoutGuide
         
         everyThreeHoursView.snp.makeConstraints {
             $0.top.equalTo(topTitleView.snp.bottom)
             $0.horizontalEdges.equalTo(backgroundView.snp.horizontalEdges)
-            $0.height.equalTo(200)
+            $0.height.equalTo(180)
+        }
+        
+        everyThreeHoursImageView.snp.makeConstraints {
+            $0.top.equalTo(everyThreeHoursView.snp.top).offset(5)
+            $0.leading.equalTo(everyThreeHoursView.snp.leading).offset(20)
+            $0.height.width.equalTo(20)
+        }
+        
+        everyThreeHoursLabel.snp.makeConstraints {
+            $0.top.equalTo(everyThreeHoursView.snp.top).offset(5)
+            $0.leading.equalTo(everyThreeHoursImageView.snp.trailing).offset(10)
+            $0.trailing.equalTo(everyThreeHoursView.snp.trailing).offset(20)
+            $0.height.equalTo(20)
+        }
+        
+        weatherCollectionView.snp.makeConstraints {
+            $0.top.equalTo(everyThreeHoursLabel.snp.bottom).offset(5)
+            $0.horizontalEdges.equalTo(everyThreeHoursView.snp.horizontalEdges)
+            $0.bottom.equalTo(everyThreeHoursView.snp.bottom)
         }
         
         weatherForecastView.snp.makeConstraints {
@@ -136,18 +166,16 @@ final class MainView: UIView {
         bottomButtonView.snp.makeConstraints {
             $0.bottom.equalTo(safeArea)
             $0.horizontalEdges.equalTo(safeArea)
-            $0.height.equalTo(70)
+            $0.height.equalTo(60)
         }
     }
     
     func configureUI() {
         backgroundColor = .white
         
-        backgroundView.backgroundColor = .systemGray
-        
         topTitleView.backgroundColor = .darkGray
-        everyThreeHoursView.backgroundColor = .systemGray4
-        weatherForecastView.backgroundColor = .systemGray2
+        everyThreeHoursView.backgroundColor = .systemGray2
+        weatherForecastView.backgroundColor = .systemGray4
         
         bottomButtonView.backgroundColor = .systemGray5
         
@@ -167,5 +195,25 @@ final class MainView: UIView {
         
         lowestTempLabel.text = "최저: 25º"
         lowestTempLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        
+        // everyThreeHours
+        everyThreeHoursImageView.image = UIImage(systemName: "calendar")
+        everyThreeHoursImageView.tintColor = .white
+        
+        everyThreeHoursLabel.text = "3시간 간격의 일기예보"
+        everyThreeHoursLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .regular))
+        
+        weatherCollectionView.backgroundColor = .systemGray
+    }
+    
+    static func contentsCollectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        let width = UIScreen.main.bounds.width
+        layout.itemSize = CGSize(width: width / 5, height: 150)
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.scrollDirection = .horizontal
+        return layout
     }
 }
