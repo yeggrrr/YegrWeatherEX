@@ -8,15 +8,23 @@
 import UIKit
 import SnapKit
 
-class MainView: UIView {
-    let scrollView = UIScrollView()
-    let backgroundView = UIView()
+final class MainView: UIView {
+    private let scrollView = UIScrollView()
+    private let backgroundView = UIView()
     
-    let topTitleView = UIView()
-    let everyThreeHoursView = UIView()
-    let weatherForecastView = UIView()
+    private let topTitleView = UIView()
+    let locationLabel = UILabel()
+    let currentTempLabel = UILabel()
+    let currentWeatherLabel = UILabel()
+    let highestTempLabel = UILabel()
+    let lowestTempLabel = UILabel()
+    private let dividerView = UIView()
     
-    let bottomButtonView = UIView()
+    private let everyThreeHoursView = UIView()
+    
+    private let weatherForecastView = UIView()
+    
+    private let bottomButtonView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +43,13 @@ class MainView: UIView {
         scrollView.addSubview(backgroundView)
         
         backgroundView.addSubview(topTitleView)
+        topTitleView.addSubview(locationLabel)
+        topTitleView.addSubview(currentTempLabel)
+        topTitleView.addSubview(currentWeatherLabel)
+        topTitleView.addSubview(highestTempLabel)
+        topTitleView.addSubview(dividerView)
+        topTitleView.addSubview(lowestTempLabel)
+        
         backgroundView.addSubview(everyThreeHoursView)
         backgroundView.addSubview(weatherForecastView)
         
@@ -63,6 +78,48 @@ class MainView: UIView {
             $0.height.equalTo(320)
         }
         
+        locationLabel.snp.makeConstraints {
+            $0.top.equalTo(topTitleView.snp.top).offset(30)
+            $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
+            $0.centerX.equalTo(topTitleView.snp.centerX)
+            $0.height.equalTo(50)
+        }
+        
+        currentTempLabel.snp.makeConstraints {
+            $0.top.equalTo(locationLabel.snp.bottom)
+            $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
+            $0.centerX.equalTo(topTitleView.snp.centerX)
+            $0.height.equalTo(100)
+        }
+        
+        currentWeatherLabel.snp.makeConstraints {
+            $0.top.equalTo(currentTempLabel.snp.bottom)
+            $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
+            $0.centerX.equalTo(topTitleView.snp.centerX)
+            $0.height.equalTo(35)
+        }
+        
+        highestTempLabel.snp.makeConstraints {
+            $0.trailing.equalTo(dividerView.snp.leading).offset(-10)
+            $0.leading.equalTo(topTitleView.snp.leading).offset(20)
+            $0.centerY.equalTo(dividerView.snp.centerY)
+            $0.height.equalTo(35)
+        }
+        
+        dividerView.snp.makeConstraints {
+            $0.top.equalTo(currentWeatherLabel.snp.bottom).offset(5)
+            $0.centerX.equalTo(topTitleView.snp.centerX)
+            $0.width.equalTo(2)
+            $0.height.equalTo(30)
+        }
+        
+        lowestTempLabel.snp.makeConstraints {
+            $0.leading.equalTo(dividerView.snp.trailing).offset(10)
+            $0.trailing.equalTo(topTitleView.snp.trailing).offset(-20)
+            $0.centerY.equalTo(dividerView.snp.centerY)
+            $0.height.equalTo(35)
+        }
+        
         everyThreeHoursView.snp.makeConstraints {
             $0.top.equalTo(topTitleView.snp.bottom)
             $0.horizontalEdges.equalTo(backgroundView.snp.horizontalEdges)
@@ -86,13 +143,29 @@ class MainView: UIView {
     func configureUI() {
         backgroundColor = .white
         
-        scrollView.backgroundColor = .systemCyan
-        backgroundView.backgroundColor = .systemBrown
+        backgroundView.backgroundColor = .systemGray
         
-        topTitleView.backgroundColor = .systemRed
-        everyThreeHoursView.backgroundColor = .systemOrange
-        weatherForecastView.backgroundColor = .systemGreen
+        topTitleView.backgroundColor = .darkGray
+        everyThreeHoursView.backgroundColor = .systemGray4
+        weatherForecastView.backgroundColor = .systemGray2
         
         bottomButtonView.backgroundColor = .systemGray5
+        
+        locationLabel.text = "Seoul City"
+        locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 35, weight: .regular))
+        
+        currentTempLabel.text = "28º"
+        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 90, weight: .thin))
+        
+        currentWeatherLabel.text = "맑음"
+        currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        
+        highestTempLabel.text = "최고: 31º"
+        highestTempLabel.setUI(txtColor: .white, txtAlignment: .right, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        
+        dividerView.backgroundColor = .white
+        
+        lowestTempLabel.text = "최저: 25º"
+        lowestTempLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
     }
 }

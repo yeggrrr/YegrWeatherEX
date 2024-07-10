@@ -23,6 +23,7 @@
 		680082C92C3EC88F00ADD884 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082C82C3EC88E00ADD884 /* BaseTableViewCell.swift */; };
 		680082CB2C3EC8D200ADD884 /* ReusableProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CA2C3EC8D200ADD884 /* ReusableProtocol+.swift */; };
 		680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CC2C3ED14D00ADD884 /* MainView.swift */; };
+		680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CE2C3ED96600ADD884 /* UILabel+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		680082C82C3EC88E00ADD884 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		680082CA2C3EC8D200ADD884 /* ReusableProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableProtocol+.swift"; sourceTree = "<group>"; };
 		680082CC2C3ED14D00ADD884 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		680082CE2C3ED96600ADD884 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				680082CA2C3EC8D200ADD884 /* ReusableProtocol+.swift */,
+				680082CE2C3ED96600ADD884 /* UILabel+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			files = (
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
 				680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */,
+				680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */,
 				680082962C3E64C800ADD884 /* MainViewController.swift in Sources */,
 				680082CB2C3EC8D200ADD884 /* ReusableProtocol+.swift in Sources */,
 				680082922C3E64C800ADD884 /* AppDelegate.swift in Sources */,

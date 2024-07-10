@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainViewController: BaseViewController {
+final class MainViewController: BaseViewController {
     let mainView = MainView()
     
     override func viewDidLoad() {
@@ -20,13 +20,16 @@ class MainViewController: BaseViewController {
     }
     
     override func configureLayout() {
+        let safeArea = view.safeAreaLayoutGuide
+        
         mainView.snp.makeConstraints {
-            $0.edges.equalTo(view)
+            $0.verticalEdges.equalTo(view)
+            $0.horizontalEdges.equalTo(safeArea)
         }
     }
     
     override func configureUI() {
-        view.backgroundColor = .systemBrown
+        view.backgroundColor = .white
     }
 }
 
