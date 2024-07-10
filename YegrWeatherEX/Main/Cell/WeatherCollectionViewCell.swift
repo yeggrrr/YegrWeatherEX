@@ -42,17 +42,16 @@ class WeatherCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureUI() {
-        contentView.backgroundColor = .systemTeal
-        timeLabel.backgroundColor = .systemCyan
-        tempLabel.backgroundColor = .systemFill
+        contentView.backgroundColor = .darkGray
         
+        // 임시
         timeLabel.text = "12시"
+        tempLabel.text = "26º"
+        
         timeLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 17, weight: .regular))
+        tempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 17, weight: .regular))
         
         weatherImage.image = UIImage(systemName: "cloud.fill")
         weatherImage.tintColor = .white
-        
-        tempLabel.text = "26º"
-        tempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 17, weight: .regular))
     }
 }

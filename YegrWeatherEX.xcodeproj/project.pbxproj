@@ -25,6 +25,7 @@
 		680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CC2C3ED14D00ADD884 /* MainView.swift */; };
 		680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CE2C3ED96600ADD884 /* UILabel+.swift */; };
 		680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */; };
+		680082D72C3EF04600ADD884 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		680082CC2C3ED14D00ADD884 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		680082CE2C3ED96600ADD884 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */,
+				680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				680082D72C3EF04600ADD884 /* WeatherTableViewCell.swift in Sources */,
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
 				680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */,
 				680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */,

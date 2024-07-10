@@ -26,8 +26,13 @@ final class MainView: UIView {
     let weatherCollectionView = UICollectionView(frame: .zero, collectionViewLayout: contentsCollectionViewLayout())
     
     private let weatherForecastView = UIView()
+    let fiveDaysImage = UIImageView()
+    let fiveDaysLabel = UILabel()
+    let weatherTableView = UITableView()
     
     private let bottomButtonView = UIView()
+    let mapButton = UIButton(type: .system)
+    let detailButton = UIButton(type: .system)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,8 +65,13 @@ final class MainView: UIView {
         everyThreeHoursView.addSubview(weatherCollectionView)
         
         backgroundView.addSubview(weatherForecastView)
+        weatherForecastView.addSubview(fiveDaysImage)
+        weatherForecastView.addSubview(fiveDaysLabel)
+        weatherForecastView.addSubview(weatherTableView)
         
         addSubview(bottomButtonView)
+        bottomButtonView.addSubview(mapButton)
+        bottomButtonView.addSubview(detailButton)
     }
     
     func configureTopLayout() {
@@ -163,47 +173,85 @@ final class MainView: UIView {
             $0.height.equalTo(320)
         }
         
+        fiveDaysImage.snp.makeConstraints {
+            $0.top.equalTo(weatherForecastView.snp.top).offset(5)
+            $0.leading.equalTo(weatherForecastView.snp.leading).offset(20)
+            $0.height.width.equalTo(20)
+        }
+        
+        fiveDaysLabel.snp.makeConstraints {
+            $0.top.equalTo(weatherForecastView.snp.top).offset(5)
+            $0.leading.equalTo(fiveDaysImage.snp.trailing).offset(10)
+            $0.trailing.equalTo(weatherForecastView.snp.trailing).offset(-10)
+            $0.height.equalTo(20)
+        }
+        
+        weatherTableView.snp.makeConstraints {
+            $0.top.equalTo(fiveDaysLabel.snp.bottom).offset(5)
+            $0.horizontalEdges.equalTo(weatherForecastView.snp.horizontalEdges)
+            $0.bottom.equalTo(weatherForecastView.snp.bottom)
+        }
+        
         bottomButtonView.snp.makeConstraints {
             $0.bottom.equalTo(safeArea)
             $0.horizontalEdges.equalTo(safeArea)
             $0.height.equalTo(60)
         }
+        
+        mapButton.snp.makeConstraints {
+            $0.leading.equalTo(bottomButtonView.snp.leading).offset(10)
+            $0.centerY.equalTo(bottomButtonView.snp.centerY)
+            $0.width.height.equalTo(40)
+        }
+        
+        detailButton.snp.makeConstraints {
+            $0.trailing.equalTo(bottomButtonView.snp.trailing).offset(-10)
+            $0.centerY.equalTo(bottomButtonView.snp.centerY)
+            $0.width.height.equalTo(40)
+        }
     }
     
     func configureUI() {
-        backgroundColor = .white
+        backgroundColor = .darkGray
         
-        topTitleView.backgroundColor = .darkGray
-        everyThreeHoursView.backgroundColor = .systemGray2
-        weatherForecastView.backgroundColor = .systemGray4
+        everyThreeHoursView.backgroundColor = .systemGray
+        weatherForecastView.backgroundColor = .systemGray
         
-        bottomButtonView.backgroundColor = .systemGray5
-        
+        // 임시
         locationLabel.text = "Seoul City"
-        locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 35, weight: .regular))
-        
         currentTempLabel.text = "28º"
-        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 90, weight: .thin))
-        
         currentWeatherLabel.text = "맑음"
-        currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
-        
         highestTempLabel.text = "최고: 31º"
-        highestTempLabel.setUI(txtColor: .white, txtAlignment: .right, fontStyle: .systemFont(ofSize: 20, weight: .regular))
-        
-        dividerView.backgroundColor = .white
-        
         lowestTempLabel.text = "최저: 25º"
+        everyThreeHoursLabel.text = "3시간 간격의 일기예보"
+        fiveDaysLabel.text = "5일 간의 일기예보"
+        
+        locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 35, weight: .regular))
+        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 90, weight: .thin))
+        currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        highestTempLabel.setUI(txtColor: .white, txtAlignment: .right, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        dividerView.backgroundColor = .white
         lowestTempLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        
+        // weatherCollectionView
+        weatherCollectionView.backgroundColor = .systemGray
         
         // everyThreeHours
         everyThreeHoursImageView.image = UIImage(systemName: "calendar")
         everyThreeHoursImageView.tintColor = .white
-        
-        everyThreeHoursLabel.text = "3시간 간격의 일기예보"
         everyThreeHoursLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .regular))
         
-        weatherCollectionView.backgroundColor = .systemGray
+        fiveDaysImage.image = UIImage(systemName: "calendar")
+        fiveDaysImage.tintColor = .white
+        fiveDaysLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .regular))
+        
+        // weatherTableView
+        weatherTableView.backgroundColor = .systemGray
+        
+        mapButton.setImage(UIImage(systemName: "map"), for: .normal)
+        detailButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        mapButton.tintColor = .white
+        detailButton.tintColor = .white
     }
     
     static func contentsCollectionViewLayout() -> UICollectionViewLayout {
