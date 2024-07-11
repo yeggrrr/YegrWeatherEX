@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Shift
 
 final class MainViewController: BaseViewController {
     let backgroundImageView = UIImageView()
@@ -17,7 +18,7 @@ final class MainViewController: BaseViewController {
         
         configureAction()
     }
-
+    
     override func configureHierarchy() {
         view.addSubview(backgroundImageView)
         view.addSubview(mainView)
@@ -58,8 +59,10 @@ final class MainViewController: BaseViewController {
     
     @objc func detailButtonClicked() {
         print(#function)
+        let vc = SearchViewController()
+        vc.shift.enable()
+        present(vc, animated: true, completion: nil)
     }
-    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -92,8 +95,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    
 }
 
 

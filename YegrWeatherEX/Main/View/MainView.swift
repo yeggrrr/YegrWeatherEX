@@ -162,7 +162,7 @@ final class MainView: UIView {
         
         weatherCollectionView.snp.makeConstraints {
             $0.top.equalTo(everyThreeHoursLabel.snp.bottom).offset(5)
-            $0.horizontalEdges.equalTo(everyThreeHoursView.snp.horizontalEdges)
+            $0.horizontalEdges.equalTo(everyThreeHoursView.snp.horizontalEdges).inset(10)
             $0.bottom.equalTo(everyThreeHoursView.snp.bottom)
         }
         
