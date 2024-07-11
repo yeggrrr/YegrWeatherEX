@@ -91,6 +91,7 @@
 				680082C02C3EC37600ADD884 /* Extension */,
 				680082C12C3EC79B00ADD884 /* Base */,
 				680082BE2C3EC34400ADD884 /* Main */,
+				680082D82C3F600D00ADD884 /* Search */,
 				680082D22C3EE88600ADD884 /* ViewModel */,
 				6800829F2C3E64C900ADD884 /* Info.plist */,
 				680082B02C3E8D5500ADD884 /* APIKey.swift */,
@@ -156,6 +157,13 @@
 				680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		680082D82C3F600D00ADD884 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

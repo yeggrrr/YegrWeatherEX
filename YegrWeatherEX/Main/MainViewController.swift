@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class MainViewController: BaseViewController {
+    let backgroundImageView = UIImageView()
     let mainView = MainView()
     
     override func viewDidLoad() {
@@ -18,19 +19,22 @@ final class MainViewController: BaseViewController {
     }
 
     override func configureHierarchy() {
+        view.addSubview(backgroundImageView)
         view.addSubview(mainView)
     }
     
     override func configureLayout() {
+        backgroundImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         mainView.snp.makeConstraints {
-            $0.edges.equalTo(view)
+            $0.edges.equalToSuperview()
         }
     }
     
     override func configureUI() {
-        // view
-        mainView.backgroundColor = .darkGray
-        view.backgroundColor = .darkGray
+        backgroundImageView.image = UIImage(named: "weatherBackground")
         
         // weatherCollectionView
         mainView.weatherCollectionView.delegate = self
@@ -65,6 +69,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.id, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
+        cell.backgroundColor = .clear
         return cell
     }
 }
@@ -80,7 +85,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.id, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+        cell.backgroundColor = .clear
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

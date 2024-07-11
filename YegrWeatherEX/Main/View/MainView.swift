@@ -212,14 +212,9 @@ final class MainView: UIView {
     }
     
     func configureUI() {
-        backgroundColor = .darkGray
-        
-        everyThreeHoursView.backgroundColor = .systemGray
-        weatherForecastView.backgroundColor = .systemGray
-        
         // 임시
         locationLabel.text = "Seoul City"
-        currentTempLabel.text = "28º"
+        currentTempLabel.text = " 28º"
         currentWeatherLabel.text = "맑음"
         highestTempLabel.text = "최고: 31º"
         lowestTempLabel.text = "최저: 25º"
@@ -227,14 +222,15 @@ final class MainView: UIView {
         fiveDaysLabel.text = "5일 간의 일기예보"
         
         locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 35, weight: .regular))
-        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 90, weight: .thin))
+        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 100, weight: .thin))
         currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
         highestTempLabel.setUI(txtColor: .white, txtAlignment: .right, fontStyle: .systemFont(ofSize: 20, weight: .regular))
         dividerView.backgroundColor = .white
         lowestTempLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
         
         // weatherCollectionView
-        weatherCollectionView.backgroundColor = .systemGray
+        weatherCollectionView.backgroundColor = .clear
+        weatherCollectionView.showsHorizontalScrollIndicator = false
         
         // everyThreeHours
         everyThreeHoursImageView.image = UIImage(systemName: "calendar")
@@ -246,7 +242,8 @@ final class MainView: UIView {
         fiveDaysLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .regular))
         
         // weatherTableView
-        weatherTableView.backgroundColor = .systemGray
+        weatherTableView.backgroundColor = .clear
+        weatherTableView.showsVerticalScrollIndicator = false
         
         mapButton.setImage(UIImage(systemName: "map"), for: .normal)
         detailButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)

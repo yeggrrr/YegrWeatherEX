@@ -49,7 +49,7 @@ class WeatherTableViewCell: BaseTableViewCell {
     }
     
     override func configureUI() {
-        contentView.backgroundColor = .darkGray
+        contentView.backgroundColor = .clear
         
         dateLabel.text = "요일"
         lowestTempLabel.text = "최저 23º"
@@ -59,7 +59,6 @@ class WeatherTableViewCell: BaseTableViewCell {
         
         weatherImage.image = UIImage(systemName: "sun.max.fill")
         weatherImage.tintColor = .systemYellow
-        
         
         lowestTempLabel.setUI(txtColor: .lightGray, txtAlignment: .center, fontStyle: .systemFont(ofSize: 23, weight: .regular))
         highestTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 23, weight: .regular))

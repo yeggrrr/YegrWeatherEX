@@ -42,7 +42,7 @@ class WeatherCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureUI() {
-        contentView.backgroundColor = .darkGray
+        contentView.backgroundColor = .clear
         
         // 임시
         timeLabel.text = "12시"
