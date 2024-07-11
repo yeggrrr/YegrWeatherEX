@@ -26,6 +26,9 @@
 		680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082CE2C3ED96600ADD884 /* UILabel+.swift */; };
 		680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */; };
 		680082D72C3EF04600ADD884 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */; };
+		680082E32C3F950900ADD884 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082E22C3F950900ADD884 /* SearchViewController.swift */; };
+		680082E82C3F9E8400ADD884 /* Shift in Frameworks */ = {isa = PBXBuildFile; productRef = 680082E72C3F9E8400ADD884 /* Shift */; };
+		680082EA2C3FAAB400ADD884 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,8 @@
 		680082CE2C3ED96600ADD884 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		680082D02C3EE74E00ADD884 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		680082E22C3F950900ADD884 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				680082E82C3F9E8400ADD884 /* Shift in Frameworks */,
 				680082BD2C3E8F3600ADD884 /* Kingfisher in Frameworks */,
 				680082BA2C3E8F2A00ADD884 /* SnapKit in Frameworks */,
 				680082B42C3E8EF800ADD884 /* RealmSwift in Frameworks */,
@@ -162,6 +168,8 @@
 		680082D82C3F600D00ADD884 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				680082E22C3F950900ADD884 /* SearchViewController.swift */,
+				680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 				680082B62C3E8F1A00ADD884 /* Alamofire */,
 				680082B92C3E8F2A00ADD884 /* SnapKit */,
 				680082BC2C3E8F3600ADD884 /* Kingfisher */,
+				680082E72C3F9E8400ADD884 /* Shift */,
 			);
 			productName = YegrWeatherEX;
 			productReference = 6800828E2C3E64C800ADD884 /* YegrWeatherEX.app */;
@@ -221,6 +230,7 @@
 				680082B52C3E8F1A00ADD884 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				680082B82C3E8F2A00ADD884 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				680082BB2C3E8F3600ADD884 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */,
 			);
 			productRefGroup = 6800828F2C3E64C800ADD884 /* Products */;
 			projectDirPath = "";
@@ -257,10 +267,12 @@
 				680082962C3E64C800ADD884 /* MainViewController.swift in Sources */,
 				680082CB2C3EC8D200ADD884 /* ReusableProtocol+.swift in Sources */,
 				680082922C3E64C800ADD884 /* AppDelegate.swift in Sources */,
+				680082E32C3F950900ADD884 /* SearchViewController.swift in Sources */,
 				680082B12C3E8D5500ADD884 /* APIKey.swift in Sources */,
 				680082C92C3EC88F00ADD884 /* BaseTableViewCell.swift in Sources */,
 				680082942C3E64C800ADD884 /* SceneDelegate.swift in Sources */,
 				680082C72C3EC88000ADD884 /* BaseCollectionViewCell.swift in Sources */,
+				680082EA2C3FAAB400ADD884 /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +529,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wickwirew/Shift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -539,6 +559,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 680082BB2C3E8F3600ADD884 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		680082E72C3F9E8400ADD884 /* Shift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */;
+			productName = Shift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
