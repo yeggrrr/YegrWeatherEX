@@ -17,6 +17,12 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         
         configureAction()
+        APICall.shared.callRequest(api: .current(id: 1835847)) { weatherData in
+            print(weatherData)
+        } errorHandler: { error in
+            print(error)
+        }
+
     }
     
     override func configureHierarchy() {

@@ -29,6 +29,9 @@
 		680082E32C3F950900ADD884 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082E22C3F950900ADD884 /* SearchViewController.swift */; };
 		680082E82C3F9E8400ADD884 /* Shift in Frameworks */ = {isa = PBXBuildFile; productRef = 680082E72C3F9E8400ADD884 /* Shift */; };
 		680082EA2C3FAAB400ADD884 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */; };
+		680082F22C3FCDD600ADD884 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F12C3FCDD600ADD884 /* APICall.swift */; };
+		680082F42C3FD02000ADD884 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F32C3FD02000ADD884 /* APIRequest.swift */; };
+		680082F72C3FD25900ADD884 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		680082D62C3EF04600ADD884 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		680082E22C3F950900ADD884 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		680082F12C3FCDD600ADD884 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
+		680082F32C3FD02000ADD884 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 				6800829A2C3E64C900ADD884 /* Assets.xcassets */,
 				6800829C2C3E64C900ADD884 /* LaunchScreen.storyboard */,
 				680082BF2C3EC36500ADD884 /* API */,
+				680082F52C3FD23600ADD884 /* Model */,
 				680082C02C3EC37600ADD884 /* Extension */,
 				680082C12C3EC79B00ADD884 /* Base */,
 				680082BE2C3EC34400ADD884 /* Main */,
@@ -118,6 +125,8 @@
 		680082BF2C3EC36500ADD884 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				680082F12C3FCDD600ADD884 /* APICall.swift */,
+				680082F32C3FD02000ADD884 /* APIRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -172,6 +181,14 @@
 				680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		680082F52C3FD23600ADD884 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +278,7 @@
 			files = (
 				680082D72C3EF04600ADD884 /* WeatherTableViewCell.swift in Sources */,
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
+				680082F22C3FCDD600ADD884 /* APICall.swift in Sources */,
 				680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */,
 				680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */,
 				680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */,
@@ -271,7 +289,9 @@
 				680082B12C3E8D5500ADD884 /* APIKey.swift in Sources */,
 				680082C92C3EC88F00ADD884 /* BaseTableViewCell.swift in Sources */,
 				680082942C3E64C800ADD884 /* SceneDelegate.swift in Sources */,
+				680082F72C3FD25900ADD884 /* CurrentWeatherData.swift in Sources */,
 				680082C72C3EC88000ADD884 /* BaseCollectionViewCell.swift in Sources */,
+				680082F42C3FD02000ADD884 /* APIRequest.swift in Sources */,
 				680082EA2C3FAAB400ADD884 /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
