@@ -11,7 +11,7 @@ class MainViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
     
     var outputWeatherData: Observable<CurrentWeatherData?> = Observable(nil)
-    var outputThreeHoursData: Observable<[ThreeHoursFiveDaysWeatherData]> = Observable([])
+    var outputThreeDaysData: Observable<[ThreeHoursFiveDaysWeatherData.List]> = Observable([])
     
     init() {
         transform()
@@ -31,13 +31,26 @@ class MainViewModel {
         }
         
         APICall.shared.callRequestArrayData(api: .threeHours(id: 1835847), model: ThreeHoursFiveDaysWeatherData.self) { data in
-            // print(data)
             guard let data = data else { return }
-            self.outputThreeHoursData.value = data
+            guard let firstData = data.first else { return }
+            self.outputThreeDaysData.value = firstData.list.filter {
+                let targetDateText = DateFormatter.longToShortDate(dateString: $0.dateText)
+                let maxDateText = self.getDateText(add: 2)
+                return targetDateText <= maxDateText
+            }
         } errorHandler: { error in
             print(error)
         }
-
-
+    }
+    
+    func getDateText(add day: Int) -> String {
+        let today = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let dateComponents = DateComponents(day: day)
+        let targetDate = calendar.date(byAdding: dateComponents, to: today)
+        
+        guard let targetDate = targetDate else { return "-" }
+        let dateText = DateFormatter.onlyDateFormatter.string(from: targetDate)
+        return dateText
     }
 }

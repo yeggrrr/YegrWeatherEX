@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class WeatherCollectionViewCell: BaseCollectionViewCell {
     let timeLabel = UILabel()
@@ -29,20 +30,20 @@ class WeatherCollectionViewCell: BaseCollectionViewCell {
         }
         
         weatherImage.snp.makeConstraints {
-            $0.top.equalTo(timeLabel.snp.bottom).offset(20)
+            $0.top.equalTo(timeLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(timeLabel.snp.centerX)
-            $0.height.width.equalTo(30)
+            $0.height.width.equalTo(40)
         }
         
         tempLabel.snp.makeConstraints {
-            $0.top.equalTo(weatherImage.snp.bottom).offset(20)
+            $0.top.equalTo(weatherImage.snp.bottom).offset(10)
             $0.horizontalEdges.equalTo(safeArea.snp.horizontalEdges).inset(10)
             $0.bottom.equalTo(safeArea).offset(-10)
         }
     }
     
     override func configureUI() {
-        contentView.backgroundColor = .clear
+        backgroundColor = .clear
         
         // 임시
         timeLabel.text = "12시"
@@ -53,5 +54,11 @@ class WeatherCollectionViewCell: BaseCollectionViewCell {
         
         weatherImage.image = UIImage(systemName: "cloud.fill")
         weatherImage.tintColor = .white
+    }
+    
+    func setImage(iconName: String?) {
+        guard let iconName = iconName else { return }
+        let imageURL = URL(string: "https://openweathermap.org/img/wn/\(iconName)@2x.png")
+        weatherImage.kf.setImage(with: imageURL)
     }
 }

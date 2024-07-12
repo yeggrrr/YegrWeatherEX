@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Shift
+import Kingfisher
 
 final class MainViewController: BaseViewController {
     let mainViewModel = MainViewModel()
@@ -29,8 +30,8 @@ final class MainViewController: BaseViewController {
             self.setCurrentData(data: weatherData)
         }
         
-        mainViewModel.outputThreeHoursData.bind { threeHoursData in
-            print(threeHoursData)
+        mainViewModel.outputThreeDaysData.bind { threeDaysData in
+            self.mainView.weatherCollectionView.reloadData()
         }
     }
     
@@ -75,8 +76,8 @@ final class MainViewController: BaseViewController {
         self.mainView.locationLabel.text = data.name
         self.mainView.currentTempLabel.text = " \(Int(data.main.temp))º"
         self.mainView.currentWeatherLabel.text = data.weather.first?.description
-        self.mainView.highestTempLabel.text = "최고: \(Int(data.main.temp_max))º"
-        self.mainView.lowestTempLabel.text = "최저: \(Int(data.main.temp_min))º"
+        self.mainView.highestTempLabel.text = "최고: \(Int(data.main.tempMax))º"
+        self.mainView.lowestTempLabel.text = "최저: \(Int(data.main.tempMin))º"
         self.mainView.dividerLabel.text = "|"
     }
     
@@ -94,12 +95,15 @@ final class MainViewController: BaseViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return mainViewModel.outputThreeDaysData.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCollectionViewCell.id, for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .clear
+        let item = mainViewModel.outputThreeDaysData.value[indexPath.item]
+        cell.setImage(iconName: item.weather.first?.icon)
+        cell.tempLabel.text = "\(Int(item.main.temp))º"
+        cell.timeLabel.text = DateFormatter.longToOnlyHour(dateString: item.dateText)
         return cell
     }
 }
