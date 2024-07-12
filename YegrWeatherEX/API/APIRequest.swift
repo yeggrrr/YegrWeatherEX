@@ -10,7 +10,7 @@ import Alamofire
 
 enum APIRequest {
     case current(id: Int)
-    case threeHours(lat: Double, lon: Double)
+    case threeHours(id: Int)
     
     var baseURL: String {
         return "https://api.openweathermap.org/data/2.5/"
@@ -20,8 +20,8 @@ enum APIRequest {
         switch self {
         case .current(id: let id):
             return URL(string: baseURL + "weather?id=\(id)")!
-        case .threeHours(lat: let lat, lon: let lon):
-            return URL(string: baseURL + "forecast?lat=\(lat)&lon=\(lon)")!
+        case .threeHours(id: let id):
+            return URL(string: baseURL + "forecast?id=\(id)")!
         }
     }
     
