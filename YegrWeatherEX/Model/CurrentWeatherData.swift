@@ -10,12 +10,12 @@ import Foundation
 struct CurrentWeatherData: Decodable {
     let coored: Coord?
     let weather: [Weather]
-    // let base: String
+    let base: String
     let main: Main
     let visibility: Int
     let wind: Wind
     let clouds: Clouds
-    // let dt: Int
+    let dt: Int
     let sys: Sys
     let timezone: Int
     let id: Int
@@ -35,14 +35,21 @@ struct CurrentWeatherData: Decodable {
     }
     
     struct Main: Decodable {
-        let temp:Double
-        let feels_like: Double
-        let temp_min: Double
-        let temp_max: Double
+        let temp: Double
         let pressure: Double
-        let humidity: Int
-        // let sea_level: Int
-        // let grnd_level: Int
+        let humidity: Double
+        let feelsLike: Double
+        let tempMin: Double
+        let tempMax: Double
+        
+        enum CodingKeys: String, CodingKey {
+            case temp = "temp"
+            case pressure = "pressure"
+            case humidity = "humidity"
+            case feelsLike = "feels_like"
+            case tempMin = "temp_min"
+            case tempMax = "temp_max"
+        }
     }
     
     struct Wind: Decodable {
@@ -58,7 +65,5 @@ struct CurrentWeatherData: Decodable {
         let type: Int
         let id: Int
         let country: String
-        // let sunrise: Int
-        // let sunset: Int
     }
 }
