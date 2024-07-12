@@ -26,13 +26,7 @@ final class MainViewController: BaseViewController {
     func bindData() {
         mainViewModel.inputViewDidLoadTrigger.value = ()
         mainViewModel.outputWeatherData.bind { weatherData in
-            guard let weatherData = weatherData else { return }
-            self.mainView.locationLabel.text = weatherData.name
-            self.mainView.currentTempLabel.text = " \(Int(weatherData.main.temp))º"
-            self.mainView.currentWeatherLabel.text = weatherData.weather.first?.description
-            self.mainView.highestTempLabel.text = "최고: \(Int(weatherData.main.temp_max))º"
-            self.mainView.lowestTempLabel.text = "최저: \(Int(weatherData.main.temp_min))º"
-            self.mainView.dividerLabel.text = "|"
+            self.setCurrentData(data: weatherData)
         }
     }
     
@@ -70,6 +64,16 @@ final class MainViewController: BaseViewController {
     func configureAction() {
         mainView.mapButton.addTarget(self, action: #selector(mapButtonClicked), for: .touchUpInside)
         mainView.detailButton.addTarget(self, action: #selector(detailButtonClicked), for: .touchUpInside)
+    }
+    
+    func setCurrentData(data: CurrentWeatherData?) {
+        guard let data = data else { return }
+        self.mainView.locationLabel.text = data.name
+        self.mainView.currentTempLabel.text = " \(Int(data.main.temp))º"
+        self.mainView.currentWeatherLabel.text = data.weather.first?.description
+        self.mainView.highestTempLabel.text = "최고: \(Int(data.main.temp_max))º"
+        self.mainView.lowestTempLabel.text = "최저: \(Int(data.main.temp_min))º"
+        self.mainView.dividerLabel.text = "|"
     }
     
     @objc func mapButtonClicked() {

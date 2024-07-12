@@ -23,7 +23,7 @@ class MainViewModel {
     }
     
     func callRequest() {
-        APICall.shared.callRequest(api: .current(id: 1835847)) { weatherData in
+        APICall.shared.callRequest(api: .current(id: 1835847), model: CurrentWeatherData.self) { weatherData in
             self.outputWeatherData.value = weatherData
             print(self.outputWeatherData.value)
         } errorHandler: { error in

@@ -213,7 +213,7 @@ final class MainView: UIView {
         everyThreeHoursLabel.text = "3시간 간격의 일기예보"
         fiveDaysLabel.text = "5일 간의 일기예보"
         
-        locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 35, weight: .regular))
+        locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 40, weight: .regular))
         currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 80, weight: .thin))
         currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
         

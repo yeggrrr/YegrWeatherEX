@@ -13,8 +13,8 @@ class APICall {
     
     private init() { }
     
-    func callRequest(api: APIRequest, completion: @escaping (CurrentWeatherData) -> Void, errorHandler: @escaping (String) -> Void) {
-        AF.request(api.endpoint, method: api.method, parameters: api.parameter).responseDecodable(of: CurrentWeatherData.self) { response in
+    func callRequest<T:Decodable>(api: APIRequest, model: T.Type, completion: @escaping (T?) -> Void, errorHandler: @escaping (String) -> Void) {
+        AF.request(api.endpoint, method: api.method, parameters: api.parameter).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let value):
                 completion(value)
