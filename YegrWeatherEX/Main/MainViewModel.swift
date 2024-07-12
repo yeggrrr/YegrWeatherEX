@@ -30,12 +30,14 @@ class MainViewModel {
             print(error)
         }
         
-        APICall.shared.callRequest(api: .threeHours(id: 1835847), model: ThreeHoursFiveDaysWeatherData.self) { data in
+        APICall.shared.callRequestArrayData(api: .threeHours(id: 1835847), model: ThreeHoursFiveDaysWeatherData.self) { data in
             // print(data)
-            dump(data)
+            guard let data = data else { return }
+            self.outputThreeHoursData.value = data
         } errorHandler: { error in
             print(error)
         }
+
 
     }
 }

@@ -28,6 +28,10 @@ final class MainViewController: BaseViewController {
         mainViewModel.outputWeatherData.bind { weatherData in
             self.setCurrentData(data: weatherData)
         }
+        
+        mainViewModel.outputThreeHoursData.bind { threeHoursData in
+            print(threeHoursData)
+        }
     }
     
     override func configureHierarchy() {
