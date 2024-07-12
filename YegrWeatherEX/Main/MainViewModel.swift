@@ -11,6 +11,7 @@ class MainViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
     
     var outputWeatherData: Observable<CurrentWeatherData?> = Observable(nil)
+    var outputThreeHoursData: Observable<[ThreeHoursFiveDaysWeatherData]> = Observable([])
     
     init() {
         transform()
@@ -28,5 +29,13 @@ class MainViewModel {
         } errorHandler: { error in
             print(error)
         }
+        
+        APICall.shared.callRequest(api: .threeHours(id: 1835847), model: ThreeHoursFiveDaysWeatherData.self) { data in
+            // print(data)
+            dump(data)
+        } errorHandler: { error in
+            print(error)
+        }
+
     }
 }
