@@ -24,7 +24,7 @@ class SearchTableViewCell: BaseTableViewCell {
         let height = contentView.frame.height
         
         nameStackView.snp.makeConstraints {
-            $0.edges.equalTo(contentView.snp.edges)
+            $0.edges.equalTo(safeArea.snp.edges)
         }
         
         regionLabel.snp.makeConstraints {

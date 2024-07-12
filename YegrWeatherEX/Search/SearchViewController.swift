@@ -94,4 +94,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cityTableView.deselectRow(at: indexPath, animated: true)
+    }
 }
