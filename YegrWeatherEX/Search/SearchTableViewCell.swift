@@ -34,8 +34,6 @@ class SearchTableViewCell: BaseTableViewCell {
         countryLabel.snp.makeConstraints {
             $0.height.equalTo(height / 2)
         }
-            
-        
     }
     
     override func configureUI() {

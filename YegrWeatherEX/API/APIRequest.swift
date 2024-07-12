@@ -29,6 +29,6 @@ enum APIRequest {
     }
     
     var parameter: Parameters {
-        return ["appid": APIKey.weatherKey, "lang": "kr"]
+        return ["appid": APIKey.weatherKey, "lang": "kr", "units": "metric"]
     }
 }

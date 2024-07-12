@@ -32,6 +32,8 @@
 		680082F22C3FCDD600ADD884 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F12C3FCDD600ADD884 /* APICall.swift */; };
 		680082F42C3FD02000ADD884 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F32C3FD02000ADD884 /* APIRequest.swift */; };
 		680082F72C3FD25900ADD884 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */; };
+		680082F92C41028A00ADD884 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F82C41028A00ADD884 /* MainViewModel.swift */; };
+		680082FC2C4102DA00ADD884 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082FB2C4102DA00ADD884 /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		680082F12C3FCDD600ADD884 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		680082F32C3FD02000ADD884 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
+		680082F82C41028A00ADD884 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		680082FB2C4102DA00ADD884 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,10 @@
 				680082BF2C3EC36500ADD884 /* API */,
 				680082F52C3FD23600ADD884 /* Model */,
 				680082C02C3EC37600ADD884 /* Extension */,
+				680082FA2C4102C300ADD884 /* Observable */,
 				680082C12C3EC79B00ADD884 /* Base */,
 				680082BE2C3EC34400ADD884 /* Main */,
 				680082D82C3F600D00ADD884 /* Search */,
-				680082D22C3EE88600ADD884 /* ViewModel */,
 				6800829F2C3E64C900ADD884 /* Info.plist */,
 				680082B02C3E8D5500ADD884 /* APIKey.swift */,
 			);
@@ -115,6 +119,7 @@
 		680082BE2C3EC34400ADD884 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				680082F82C41028A00ADD884 /* MainViewModel.swift */,
 				680082952C3E64C800ADD884 /* MainViewController.swift */,
 				680082D32C3EE88A00ADD884 /* View */,
 				680082D42C3EE88F00ADD884 /* Cell */,
@@ -150,13 +155,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		680082D22C3EE88600ADD884 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		680082D32C3EE88A00ADD884 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +187,14 @@
 				680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		680082FA2C4102C300ADD884 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				680082FB2C4102DA00ADD884 /* Observable.swift */,
+			);
+			path = Observable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				680082FC2C4102DA00ADD884 /* Observable.swift in Sources */,
 				680082D72C3EF04600ADD884 /* WeatherTableViewCell.swift in Sources */,
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
 				680082F22C3FCDD600ADD884 /* APICall.swift in Sources */,
@@ -293,6 +300,7 @@
 				680082C72C3EC88000ADD884 /* BaseCollectionViewCell.swift in Sources */,
 				680082F42C3FD02000ADD884 /* APIRequest.swift in Sources */,
 				680082EA2C3FAAB400ADD884 /* SearchTableViewCell.swift in Sources */,
+				680082F92C41028A00ADD884 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

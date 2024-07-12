@@ -10,19 +10,30 @@ import SnapKit
 import Shift
 
 final class MainViewController: BaseViewController {
+    let mainViewModel = MainViewModel()
+    
     let backgroundImageView = UIImageView()
     let mainView = MainView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindData()
+        configureView()
         configureAction()
-        APICall.shared.callRequest(api: .current(id: 1835847)) { weatherData in
-            print(weatherData)
-        } errorHandler: { error in
-            print(error)
+    }
+    
+    func bindData() {
+        mainViewModel.inputViewDidLoadTrigger.value = ()
+        mainViewModel.outputWeatherData.bind { weatherData in
+            guard let weatherData = weatherData else { return }
+            self.mainView.locationLabel.text = weatherData.name
+            self.mainView.currentTempLabel.text = " \(Int(weatherData.main.temp))º"
+            self.mainView.currentWeatherLabel.text = weatherData.weather.first?.description
+            self.mainView.highestTempLabel.text = "최고: \(Int(weatherData.main.temp_max))º"
+            self.mainView.lowestTempLabel.text = "최저: \(Int(weatherData.main.temp_min))º"
+            self.mainView.dividerLabel.text = "|"
         }
-
     }
     
     override func configureHierarchy() {
@@ -42,7 +53,9 @@ final class MainViewController: BaseViewController {
     
     override func configureUI() {
         backgroundImageView.image = UIImage(named: "weatherBackground")
-        
+    }
+    
+    func configureView() {
         // weatherCollectionView
         mainView.weatherCollectionView.delegate = self
         mainView.weatherCollectionView.dataSource = self

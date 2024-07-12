@@ -16,9 +16,11 @@ final class MainView: UIView {
     let locationLabel = UILabel()
     let currentTempLabel = UILabel()
     let currentWeatherLabel = UILabel()
+    
+    let tempStackView = UIStackView()
     let highestTempLabel = UILabel()
+    let dividerLabel = UILabel()
     let lowestTempLabel = UILabel()
-    private let dividerView = UIView()
     
     private let everyThreeHoursView = UIView()
     let everyThreeHoursImageView = UIImageView()
@@ -55,9 +57,11 @@ final class MainView: UIView {
         topTitleView.addSubview(locationLabel)
         topTitleView.addSubview(currentTempLabel)
         topTitleView.addSubview(currentWeatherLabel)
-        topTitleView.addSubview(highestTempLabel)
-        topTitleView.addSubview(dividerView)
-        topTitleView.addSubview(lowestTempLabel)
+        
+        topTitleView.addSubview(tempStackView)
+        tempStackView.addArrangedSubview(highestTempLabel)
+        tempStackView.addArrangedSubview(dividerLabel)
+        tempStackView.addArrangedSubview(lowestTempLabel)
         
         backgroundView.addSubview(everyThreeHoursView)
         everyThreeHoursView.addSubview(everyThreeHoursImageView)
@@ -98,42 +102,36 @@ final class MainView: UIView {
         locationLabel.snp.makeConstraints {
             $0.top.equalTo(topTitleView.snp.top).offset(30)
             $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
-            $0.centerX.equalTo(topTitleView.snp.centerX)
             $0.height.equalTo(50)
         }
         
         currentTempLabel.snp.makeConstraints {
             $0.top.equalTo(locationLabel.snp.bottom)
             $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
-            $0.centerX.equalTo(topTitleView.snp.centerX)
             $0.height.equalTo(100)
         }
         
         currentWeatherLabel.snp.makeConstraints {
             $0.top.equalTo(currentTempLabel.snp.bottom)
             $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
-            $0.centerX.equalTo(topTitleView.snp.centerX)
+            $0.height.equalTo(35)
+        }
+        
+        tempStackView.snp.makeConstraints {
+            $0.top.equalTo(currentWeatherLabel.snp.bottom)
+            $0.horizontalEdges.equalTo(topTitleView.snp.horizontalEdges).inset(20)
             $0.height.equalTo(35)
         }
         
         highestTempLabel.snp.makeConstraints {
-            $0.trailing.equalTo(dividerView.snp.leading).offset(-10)
-            $0.leading.equalTo(topTitleView.snp.leading).offset(20)
-            $0.centerY.equalTo(dividerView.snp.centerY)
             $0.height.equalTo(35)
         }
         
-        dividerView.snp.makeConstraints {
-            $0.top.equalTo(currentWeatherLabel.snp.bottom).offset(5)
-            $0.centerX.equalTo(topTitleView.snp.centerX)
-            $0.width.equalTo(2)
-            $0.height.equalTo(30)
+        dividerLabel.snp.makeConstraints {
+            $0.height.equalTo(35)
         }
         
         lowestTempLabel.snp.makeConstraints {
-            $0.leading.equalTo(dividerView.snp.trailing).offset(10)
-            $0.trailing.equalTo(topTitleView.snp.trailing).offset(-20)
-            $0.centerY.equalTo(dividerView.snp.centerY)
             $0.height.equalTo(35)
         }
     }
@@ -212,21 +210,20 @@ final class MainView: UIView {
     }
     
     func configureUI() {
-        // 임시
-        locationLabel.text = "Seoul City"
-        currentTempLabel.text = " 28º"
-        currentWeatherLabel.text = "맑음"
-        highestTempLabel.text = "최고: 31º"
-        lowestTempLabel.text = "최저: 25º"
         everyThreeHoursLabel.text = "3시간 간격의 일기예보"
         fiveDaysLabel.text = "5일 간의 일기예보"
         
         locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 35, weight: .regular))
-        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 100, weight: .thin))
+        currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 80, weight: .thin))
         currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        
+        tempStackView.axis = .horizontal
+        tempStackView.spacing = 10
+        tempStackView.alignment = .center
+        tempStackView.distribution = .fillProportionally
         highestTempLabel.setUI(txtColor: .white, txtAlignment: .right, fontStyle: .systemFont(ofSize: 20, weight: .regular))
-        dividerView.backgroundColor = .white
         lowestTempLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        dividerLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .semibold))
         
         // weatherCollectionView
         weatherCollectionView.backgroundColor = .clear
