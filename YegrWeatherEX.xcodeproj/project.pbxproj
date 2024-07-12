@@ -34,6 +34,8 @@
 		680082F72C3FD25900ADD884 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */; };
 		680082F92C41028A00ADD884 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082F82C41028A00ADD884 /* MainViewModel.swift */; };
 		680082FC2C4102DA00ADD884 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082FB2C4102DA00ADD884 /* Observable.swift */; };
+		680082FE2C411DCB00ADD884 /* ThreeHoursWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082FD2C411DCB00ADD884 /* ThreeHoursWeatherData.swift */; };
+		680083002C412C1E00ADD884 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082FF2C412C1E00ADD884 /* DateFormatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
 		680082F82C41028A00ADD884 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		680082FB2C4102DA00ADD884 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		680082FD2C411DCB00ADD884 /* ThreeHoursWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeHoursWeatherData.swift; sourceTree = "<group>"; };
+		680082FF2C412C1E00ADD884 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 			children = (
 				680082CA2C3EC8D200ADD884 /* ReusableProtocol+.swift */,
 				680082CE2C3ED96600ADD884 /* UILabel+.swift */,
+				680082FF2C412C1E00ADD884 /* DateFormatter+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */,
+				680082FD2C411DCB00ADD884 /* ThreeHoursWeatherData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,6 +291,7 @@
 				680082FC2C4102DA00ADD884 /* Observable.swift in Sources */,
 				680082D72C3EF04600ADD884 /* WeatherTableViewCell.swift in Sources */,
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
+				680083002C412C1E00ADD884 /* DateFormatter+.swift in Sources */,
 				680082F22C3FCDD600ADD884 /* APICall.swift in Sources */,
 				680082CD2C3ED14D00ADD884 /* MainView.swift in Sources */,
 				680082D12C3EE74E00ADD884 /* WeatherCollectionViewCell.swift in Sources */,
@@ -299,6 +306,7 @@
 				680082F72C3FD25900ADD884 /* CurrentWeatherData.swift in Sources */,
 				680082C72C3EC88000ADD884 /* BaseCollectionViewCell.swift in Sources */,
 				680082F42C3FD02000ADD884 /* APIRequest.swift in Sources */,
+				680082FE2C411DCB00ADD884 /* ThreeHoursWeatherData.swift in Sources */,
 				680082EA2C3FAAB400ADD884 /* SearchTableViewCell.swift in Sources */,
 				680082F92C41028A00ADD884 /* MainViewModel.swift in Sources */,
 			);
