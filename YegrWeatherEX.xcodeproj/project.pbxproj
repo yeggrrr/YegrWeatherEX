@@ -45,6 +45,7 @@
 		680083322C42D2C700ADD884 /* CityRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680083312C42D2C700ADD884 /* CityRealmModel.swift */; };
 		6800833C2C42D38600ADD884 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6800833B2C42D38600ADD884 /* RealmSwift */; };
 		6800833E2C42D4AA00ADD884 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800833D2C42D4AA00ADD884 /* CityRepository.swift */; };
+		680083402C42FB6500ADD884 /* WeatherSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		6800832F2C42D29500ADD884 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		680083312C42D2C700ADD884 /* CityRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRealmModel.swift; sourceTree = "<group>"; };
 		6800833D2C42D4AA00ADD884 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
+		6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				680083222C42B59900ADD884 /* FiveDaysInfoCell.swift */,
 				680083242C42B5A500ADD884 /* LocationInfoCell.swift */,
 				680083262C42B5B100ADD884 /* EtcInfoCell.swift */,
+				6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				6800833E2C42D4AA00ADD884 /* CityRepository.swift in Sources */,
 				680083002C412C1E00ADD884 /* DateFormatter+.swift in Sources */,
 				680082F22C3FCDD600ADD884 /* APICall.swift in Sources */,
+				680083402C42FB6500ADD884 /* WeatherSectionHeaderView.swift in Sources */,
 				6800831C2C42B46500ADD884 /* TodayView.swift in Sources */,
 				680083272C42B5B100ADD884 /* EtcInfoCell.swift in Sources */,
 				680082CF2C3ED96600ADD884 /* UILabel+.swift in Sources */,

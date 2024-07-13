@@ -49,6 +49,14 @@ class WeatherViewController: BaseViewController {
         configureCollectionView()
         configureUI()
         bindData()
+        
+        CityRepository.shared.findFilePath()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getCityData()
     }
     
     override func configureHierarchy() {
@@ -130,6 +138,11 @@ class WeatherViewController: BaseViewController {
         self.weatherView.collectionView.reloadSections(IndexSet(integer: 4))
     }
     
+    func getCityData() {
+        guard let city = CityRepository.shared.fetch().first else { return }
+        weatherViewModel.callRequest(id: city.cityId)
+    }
+    
     func configureCollectionView() {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
@@ -140,6 +153,7 @@ class WeatherViewController: BaseViewController {
         weatherView.collectionView.register(LocationInfoCell.self, forCellWithReuseIdentifier: LocationInfoCell.id)
         weatherView.collectionView.register(EtcInfoCell.self, forCellWithReuseIdentifier: EtcInfoCell.id)
         weatherView.collectionView.showsVerticalScrollIndicator = false
+        weatherView.collectionView.register(WeatherSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherSectionHeaderView.id)
         
         weatherView.mapButton.addTarget(self, action: #selector(mapButtonClicked), for: .touchUpInside)
         weatherView.detailButton.addTarget(self, action: #selector(detailButtonClicked), for: .touchUpInside)
@@ -150,8 +164,8 @@ class WeatherViewController: BaseViewController {
     }
     
     @objc func detailButtonClicked() {
-        print(#function)
         let vc = SearchCityViewController()
+        vc.delegate = self
         vc.shift.enable()
         present(vc, animated: true, completion: nil)
     }
@@ -174,6 +188,35 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             return 1
         case .etcInfo:
             return ectInfoDataList.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherSectionHeaderView.id, for: indexPath) as? WeatherSectionHeaderView else { return UICollectionReusableView() }
+            switch sectionList[indexPath.section] {
+            case .threeHoursInfo:
+                headerView.titleLabel.text = "3시간 간격의 일기예보"
+            case .fiveDaysInfo:
+                headerView.titleLabel.text = "5일간의 일기예보"
+            default:
+                break
+            }
+            return headerView
+        default:
+            return UICollectionReusableView()
+        } 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        
+        switch sectionList[section] {
+        case .threeHoursInfo, .fiveDaysInfo:
+            return CGSize(width: width, height: 40)
+        default:
+            return CGSize(width: width, height: 0)
         }
     }
     
@@ -243,5 +286,12 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             let size = CGSize(width: width, height: width)
             return size
         }
+    }
+}
+
+extension WeatherViewController: CityDelegate  {
+    func reloadCityInfo() {
+        getCityData()
+        self.weatherView.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
 }
