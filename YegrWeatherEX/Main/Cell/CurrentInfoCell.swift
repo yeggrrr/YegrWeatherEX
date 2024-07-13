@@ -20,8 +20,6 @@ class CurrentInfoCell: BaseCollectionViewCell {
         todayView.snp.makeConstraints {
             $0.edges.equalTo(safeArea)
         }
-        
-        todayView.backgroundColor = .brown
     }
     
     override func configureUI() {

@@ -30,8 +30,15 @@ class EtcInfoCell: BaseCollectionViewCell {
     }
     
     override func configureUI() {
-        backgroundColor = .systemOrange
+        contentView.backgroundColor = UIColor.systemFill.withAlphaComponent(0.3)
+        contentView.layer.cornerRadius = 15
         verticalStackView.axis = .vertical
         verticalStackView.distribution = .equalSpacing
+        
+        titleLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
+        descriptionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 40, weight: .medium))
+        firstDetailInfoLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 15, weight: .regular))
+        secondDetailInfoLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .regular))
+        
     }
 }

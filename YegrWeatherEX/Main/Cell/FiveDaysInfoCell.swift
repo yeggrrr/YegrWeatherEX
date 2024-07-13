@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class FiveDaysInfoCell: BaseCollectionViewCell {
     let dateLabel = UILabel()
@@ -49,8 +50,6 @@ class FiveDaysInfoCell: BaseCollectionViewCell {
     }
     
     override func configureUI() {
-        backgroundColor = .systemGreen
-        
         dateLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 23, weight: .regular))
         lowestTempLabel.setUI(txtColor: .lightGray, txtAlignment: .center, fontStyle: .systemFont(ofSize: 23, weight: .regular))
         highestTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 23, weight: .regular))
