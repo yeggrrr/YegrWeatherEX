@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  WeatherViewModel.swift
 //  YegrWeatherEX
 //
 //  Created by YJ on 7/12/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainViewModel {
+class WeatherViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
     
     var outputWeatherData: Observable<CurrentWeatherData?> = Observable(nil)
