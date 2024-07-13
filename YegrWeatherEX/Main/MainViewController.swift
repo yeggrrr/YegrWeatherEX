@@ -125,11 +125,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.id, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
         if let day = mainViewModel.outputTotalWeatherData.value[indexPath.row].first {
-            cell.dateLabel.text = DateFormatter.DateTodayOfWeek(dateString: day.dateText)
             cell.lowestTempLabel.text = "최저 \(Int(day.main.tempMin))º"
             cell.highestTempLabel.text = "최고 \(Int(day.main.tempMax))º"
             cell.setImage(iconName: day.weather.first?.icon)
             
+            if DateFormatter.longToShortDate(dateString: day.dateText) == DateFormatter.onlyDateFormatter.string(from: Date()) {
+                cell.dateLabel.text = "오늘"
+            } else {
+                cell.dateLabel.text = DateFormatter.DateTodayOfWeek(dateString: day.dateText)
+            }
         }
         
         return cell
