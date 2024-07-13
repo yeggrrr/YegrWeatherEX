@@ -16,7 +16,7 @@ struct CurrentWeatherData: Decodable {
     let wind: Wind
     let clouds: Clouds
     let dt: Int
-    let sys: Sys
+    let sys: Sys?
     let timezone: Int
     let id: Int
     let name: String
@@ -62,8 +62,8 @@ struct CurrentWeatherData: Decodable {
     }
 
     struct Sys: Decodable {
-        let type: Int
-        let id: Int
+        let type: Int?
+        let id: Int?
         let country: String
     }
 }
