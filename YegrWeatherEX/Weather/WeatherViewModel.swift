@@ -20,18 +20,18 @@ class WeatherViewModel {
     
     func transform() {
         inputViewDidLoadTrigger.bind { _ in
-            self.callRequest()
+            self.callRequest(id: 1835847)
         }
     }
     
-    func callRequest() {
-        APICall.shared.callRequest(api: .current(id: 1835847), model: CurrentWeatherData.self) { weatherData in
+    func callRequest(id: Int) {
+        APICall.shared.callRequest(api: .current(id: id), model: CurrentWeatherData.self) { weatherData in
             self.outputWeatherData.value = weatherData
         } errorHandler: { error in
             print(error)
         }
         
-        APICall.shared.callRequest(api: .threeHours(id: 1835847), model: ThreeHoursFiveDaysWeatherData.self) { data in
+        APICall.shared.callRequest(api: .threeHours(id: id), model: ThreeHoursFiveDaysWeatherData.self) { data in
             guard let data = data else { return }
             let list = data.list
             self.outputThreeDaysData.value = list.filter {

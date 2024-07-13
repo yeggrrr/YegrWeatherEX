@@ -21,7 +21,4 @@ class CurrentInfoCell: BaseCollectionViewCell {
             $0.edges.equalTo(safeArea)
         }
     }
-    
-    override func configureUI() {
-    }
 }

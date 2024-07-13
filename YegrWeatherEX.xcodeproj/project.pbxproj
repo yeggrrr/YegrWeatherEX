@@ -13,7 +13,6 @@
 		6800829E2C3E64C900ADD884 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6800829D2C3E64C900ADD884 /* Base */; };
 		680082AF2C3E8D3500ADD884 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 680082AE2C3E8D3500ADD884 /* .gitignore */; };
 		680082B12C3E8D5500ADD884 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680082B02C3E8D5500ADD884 /* APIKey.swift */; };
-		680082B42C3E8EF800ADD884 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 680082B32C3E8EF800ADD884 /* RealmSwift */; };
 		680082B72C3E8F1A00ADD884 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 680082B62C3E8F1A00ADD884 /* Alamofire */; };
 		680082BA2C3E8F2A00ADD884 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 680082B92C3E8F2A00ADD884 /* SnapKit */; };
 		680082BD2C3E8F3600ADD884 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 680082BC2C3E8F3600ADD884 /* Kingfisher */; };
@@ -42,6 +41,10 @@
 		680083292C42BF8700ADD884 /* CityList.json in Resources */ = {isa = PBXBuildFile; fileRef = 680083282C42BF8700ADD884 /* CityList.json */; };
 		6800832B2C42C32900ADD884 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800832A2C42C32900ADD884 /* WeatherView.swift */; };
 		6800832D2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */; };
+		680083302C42D29500ADD884 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800832F2C42D29500ADD884 /* City.swift */; };
+		680083322C42D2C700ADD884 /* CityRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680083312C42D2C700ADD884 /* CityRealmModel.swift */; };
+		6800833C2C42D38600ADD884 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6800833B2C42D38600ADD884 /* RealmSwift */; };
+		6800833E2C42D4AA00ADD884 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800833D2C42D4AA00ADD884 /* CityRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,9 @@
 		680083282C42BF8700ADD884 /* CityList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
 		6800832A2C42C32900ADD884 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeHoursInfoInnerCell.swift; sourceTree = "<group>"; };
+		6800832F2C42D29500ADD884 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		680083312C42D2C700ADD884 /* CityRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRealmModel.swift; sourceTree = "<group>"; };
+		6800833D2C42D4AA00ADD884 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +93,7 @@
 				680082E82C3F9E8400ADD884 /* Shift in Frameworks */,
 				680082BD2C3E8F3600ADD884 /* Kingfisher in Frameworks */,
 				680082BA2C3E8F2A00ADD884 /* SnapKit in Frameworks */,
-				680082B42C3E8EF800ADD884 /* RealmSwift in Frameworks */,
+				6800833C2C42D38600ADD884 /* RealmSwift in Frameworks */,
 				680082B72C3E8F1A00ADD884 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,12 +125,13 @@
 				680082932C3E64C800ADD884 /* SceneDelegate.swift */,
 				6800829A2C3E64C900ADD884 /* Assets.xcassets */,
 				6800829C2C3E64C900ADD884 /* LaunchScreen.storyboard */,
+				6800832E2C42D26400ADD884 /* DataBase */,
 				680082BF2C3EC36500ADD884 /* API */,
 				680082F52C3FD23600ADD884 /* Model */,
 				680082C02C3EC37600ADD884 /* Extension */,
 				680082FA2C4102C300ADD884 /* Observable */,
 				680082C12C3EC79B00ADD884 /* Base */,
-				680082BE2C3EC34400ADD884 /* Main */,
+				680082BE2C3EC34400ADD884 /* Weather */,
 				680082D82C3F600D00ADD884 /* Search */,
 				6800829F2C3E64C900ADD884 /* Info.plist */,
 				680082B02C3E8D5500ADD884 /* APIKey.swift */,
@@ -133,14 +140,15 @@
 			path = YegrWeatherEX;
 			sourceTree = "<group>";
 		};
-		680082BE2C3EC34400ADD884 /* Main */ = {
+		680082BE2C3EC34400ADD884 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				680083192C42963600ADD884 /* WeatherViewController.swift */,
 				680082F82C41028A00ADD884 /* WeatherViewModel.swift */,
 				680082D32C3EE88A00ADD884 /* View */,
 				680082D42C3EE88F00ADD884 /* Cell */,
 			);
-			path = Main;
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		680082BF2C3EC36500ADD884 /* API */ = {
@@ -175,7 +183,6 @@
 		680082D32C3EE88A00ADD884 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				680083192C42963600ADD884 /* WeatherViewController.swift */,
 				6800832A2C42C32900ADD884 /* WeatherView.swift */,
 				6800831B2C42B46500ADD884 /* TodayView.swift */,
 			);
@@ -207,6 +214,7 @@
 		680082F52C3FD23600ADD884 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6800832F2C42D29500ADD884 /* City.swift */,
 				680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */,
 				680082FD2C411DCB00ADD884 /* ThreeHoursWeatherData.swift */,
 			);
@@ -219,6 +227,15 @@
 				680082FB2C4102DA00ADD884 /* Observable.swift */,
 			);
 			path = Observable;
+			sourceTree = "<group>";
+		};
+		6800832E2C42D26400ADD884 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				680083312C42D2C700ADD884 /* CityRealmModel.swift */,
+				6800833D2C42D4AA00ADD884 /* CityRepository.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,11 +255,11 @@
 			);
 			name = YegrWeatherEX;
 			packageProductDependencies = (
-				680082B32C3E8EF800ADD884 /* RealmSwift */,
 				680082B62C3E8F1A00ADD884 /* Alamofire */,
 				680082B92C3E8F2A00ADD884 /* SnapKit */,
 				680082BC2C3E8F3600ADD884 /* Kingfisher */,
 				680082E72C3F9E8400ADD884 /* Shift */,
+				6800833B2C42D38600ADD884 /* RealmSwift */,
 			);
 			productName = YegrWeatherEX;
 			productReference = 6800828E2C3E64C800ADD884 /* YegrWeatherEX.app */;
@@ -273,11 +290,11 @@
 			);
 			mainGroup = 680082852C3E64C800ADD884;
 			packageReferences = (
-				680082B22C3E8EF800ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				680082B52C3E8F1A00ADD884 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				680082B82C3E8F2A00ADD884 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				680082BB2C3E8F3600ADD884 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */,
+				6800833A2C42D38600ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 6800828F2C3E64C800ADD884 /* Products */;
 			projectDirPath = "";
@@ -309,7 +326,10 @@
 			files = (
 				680082FC2C4102DA00ADD884 /* Observable.swift in Sources */,
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
+				680083322C42D2C700ADD884 /* CityRealmModel.swift in Sources */,
+				680083302C42D29500ADD884 /* City.swift in Sources */,
 				6800832D2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift in Sources */,
+				6800833E2C42D4AA00ADD884 /* CityRepository.swift in Sources */,
 				680083002C412C1E00ADD884 /* DateFormatter+.swift in Sources */,
 				680082F22C3FCDD600ADD884 /* APICall.swift in Sources */,
 				6800831C2C42B46500ADD884 /* TodayView.swift in Sources */,
@@ -557,14 +577,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		680082B22C3E8EF800ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = exactVersion;
-				version = 10.52.1;
-			};
-		};
 		680082B52C3E8F1A00ADD884 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -597,14 +609,17 @@
 				minimumVersion = 0.2.1;
 			};
 		};
+		6800833A2C42D38600ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.52.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		680082B32C3E8EF800ADD884 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 680082B22C3E8EF800ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		680082B62C3E8F1A00ADD884 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 680082B52C3E8F1A00ADD884 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -624,6 +639,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */;
 			productName = Shift;
+		};
+		6800833B2C42D38600ADD884 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6800833A2C42D38600ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
