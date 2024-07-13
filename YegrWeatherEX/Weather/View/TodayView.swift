@@ -73,7 +73,7 @@ class TodayView: UIView {
         highLowTempStackView.snp.makeConstraints {
             $0.top.equalTo(currentWeatherLabel.snp.bottom)
             $0.horizontalEdges.equalTo(tempView.snp.horizontalEdges).inset(20)
-            $0.bottom.equalTo(tempView.snp.bottom)
+            $0.bottom.lessThanOrEqualTo(tempView.snp.bottom)
         }
         
         highestTempLabel.snp.makeConstraints {

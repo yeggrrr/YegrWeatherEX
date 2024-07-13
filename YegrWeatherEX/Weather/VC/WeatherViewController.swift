@@ -200,6 +200,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
                 headerView.titleLabel.text = "3시간 간격의 일기예보"
             case .fiveDaysInfo:
                 headerView.titleLabel.text = "5일간의 일기예보"
+            case .etcInfo, .locationInfo:
+                headerView.titleLabel.text = ""
             default:
                 break
             }
@@ -215,6 +217,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         switch sectionList[section] {
         case .threeHoursInfo, .fiveDaysInfo:
             return CGSize(width: width, height: 40)
+        case .etcInfo, .locationInfo:
+            return CGSize(width: width, height: 20)
         default:
             return CGSize(width: width, height: 0)
         }

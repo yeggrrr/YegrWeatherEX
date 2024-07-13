@@ -17,6 +17,13 @@ class LocationInfoCell: BaseCollectionViewCell {
     var locationStatus: CLAuthorizationStatus?
     var mycoordinate: CLLocationCoordinate2D?
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configureLocation()
+        createAnnotaion(title: "Seoul", subtitle: "", coordinate: CLLocationCoordinate2D(latitude: 37.56826, longitude: 126.977829))
+    }
+    
     override func configureHierarchy() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(mapView)
@@ -35,11 +42,14 @@ class LocationInfoCell: BaseCollectionViewCell {
     
     override func configureUI() {
         titleLabel.text = "위치"
-        titleLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .semibold))
-        configureLocation()
+        titleLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold))
+        
+        mapView.layer.cornerRadius = 10
     }
     
     func createAnnotaion(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
+        mapView.region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
+        
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = title
@@ -50,16 +60,6 @@ class LocationInfoCell: BaseCollectionViewCell {
     func configureLocation() {
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
-    }
-    
-    func sesacLocation() {
-        let sesacLocation = CLLocationCoordinate2D(latitude: 37.517742, longitude: 126.886463)
-        mapView.region = MKCoordinateRegion(center: sesacLocation, latitudinalMeters: 300, longitudinalMeters: 300)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = sesacLocation
-        annotation.title = "SeSAC 영등포 캠퍼스"
-        mapView.addAnnotation(annotation)
     }
 }
 

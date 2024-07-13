@@ -24,7 +24,7 @@ class SearchTableViewCell: BaseTableViewCell {
         let height = contentView.frame.height
         
         nameStackView.snp.makeConstraints {
-            $0.edges.equalTo(safeArea.snp.edges)
+            $0.edges.equalTo(safeArea.snp.edges).inset(5)
         }
         
         regionLabel.snp.makeConstraints {
@@ -43,8 +43,8 @@ class SearchTableViewCell: BaseTableViewCell {
         
         regionLabel.text = "지역이름"
         countryLabel.text = "나라이름"
-        regionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .semibold))
-        countryLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 15, weight: .regular))
+        regionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold))
+        countryLabel.setUI(txtColor: .lightGray, txtAlignment: .left, fontStyle: .systemFont(ofSize: 15, weight: .regular))
     }
     
 }
