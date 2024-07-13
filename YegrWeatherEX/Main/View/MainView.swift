@@ -25,12 +25,15 @@ final class MainView: UIView {
     private let everyThreeHoursView = UIView()
     let everyThreeHoursImageView = UIImageView()
     let everyThreeHoursLabel = UILabel()
-    let weatherCollectionView = UICollectionView(frame: .zero, collectionViewLayout: contentsCollectionViewLayout())
+    let weatherCollectionView = UICollectionView(frame: .zero, collectionViewLayout: threeDaysCollectionViewLayout())
     
     private let weatherForecastView = UIView()
     let fiveDaysImage = UIImageView()
     let fiveDaysLabel = UILabel()
     let weatherTableView = UITableView()
+    
+    private let additionalInfoView = UIView()
+    let additionalInfoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: additionalInfoCollecionViewLayout())
     
     private let bottomButtonView = UIView()
     let mapButton = UIButton(type: .system)
@@ -41,6 +44,7 @@ final class MainView: UIView {
         
         configureHierarchy()
         configureTopLayout()
+        configureCenterLayout()
         configureBottomLayout()
         configureUI()
     }
@@ -72,6 +76,9 @@ final class MainView: UIView {
         weatherForecastView.addSubview(fiveDaysImage)
         weatherForecastView.addSubview(fiveDaysLabel)
         weatherForecastView.addSubview(weatherTableView)
+        
+        backgroundView.addSubview(additionalInfoView)
+        additionalInfoView.addSubview(additionalInfoCollectionView)
         
         addSubview(bottomButtonView)
         bottomButtonView.addSubview(mapButton)
@@ -136,9 +143,7 @@ final class MainView: UIView {
         }
     }
     
-    func configureBottomLayout() {
-        let safeArea = safeAreaLayoutGuide
-        
+    func configureCenterLayout() {
         everyThreeHoursView.snp.makeConstraints {
             $0.top.equalTo(topTitleView.snp.bottom)
             $0.horizontalEdges.equalTo(backgroundView.snp.horizontalEdges)
@@ -167,7 +172,6 @@ final class MainView: UIView {
         weatherForecastView.snp.makeConstraints {
             $0.top.equalTo(everyThreeHoursView.snp.bottom)
             $0.horizontalEdges.equalTo(backgroundView.snp.horizontalEdges)
-            $0.bottom.equalTo(backgroundView.snp.bottom)
             $0.height.equalTo(320)
         }
         
@@ -188,6 +192,23 @@ final class MainView: UIView {
             $0.top.equalTo(fiveDaysLabel.snp.bottom).offset(5)
             $0.horizontalEdges.equalTo(weatherForecastView.snp.horizontalEdges)
             $0.bottom.equalTo(weatherForecastView.snp.bottom)
+        }
+    }
+    
+    func configureBottomLayout() {
+        let safeArea = safeAreaLayoutGuide
+        
+        additionalInfoView.snp.makeConstraints {
+            $0.top.equalTo(weatherForecastView.snp.bottom)
+            $0.horizontalEdges.equalTo(backgroundView.snp.horizontalEdges)
+            $0.bottom.equalTo(backgroundView.snp.bottom)
+            $0.height.equalTo(additionalInfoView.snp.width)
+        }
+        
+        additionalInfoCollectionView.snp.makeConstraints {
+            $0.top.equalTo(additionalInfoView.snp.top).offset(10)
+            $0.horizontalEdges.equalTo(additionalInfoView.snp.horizontalEdges).inset(10)
+            $0.bottom.equalTo(additionalInfoView.snp.bottom).offset(-10)
         }
         
         bottomButtonView.snp.makeConstraints {
@@ -242,13 +263,17 @@ final class MainView: UIView {
         weatherTableView.backgroundColor = .clear
         weatherTableView.showsVerticalScrollIndicator = false
         
+        additionalInfoView.backgroundColor = .systemGray
+        additionalInfoCollectionView.backgroundColor = .white
+        
+        // bottomButtons
         mapButton.setImage(UIImage(systemName: "map"), for: .normal)
         detailButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         mapButton.tintColor = .white
         detailButton.tintColor = .white
     }
     
-    static func contentsCollectionViewLayout() -> UICollectionViewLayout {
+    static func threeDaysCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
         layout.itemSize = CGSize(width: width / 5, height: 150)
@@ -256,6 +281,17 @@ final class MainView: UIView {
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
+        return layout
+    }
+    
+    static func additionalInfoCollecionViewLayout() -> UICollectionViewLayout {
+        let layout  = UICollectionViewFlowLayout()
+        let width = UIScreen.main.bounds.width - (10 * 2) - (10 * 2) + 10
+        layout.itemSize = CGSize(width: width / 2, height: width / 2)
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return layout
     }
 }
