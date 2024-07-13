@@ -30,11 +30,10 @@ extension DateFormatter {
         return dateFormat
     }()
     
-    static let stringToOnlyDateFormatter: DateFormatter = {
+    static let dayOfTheWeekDateFormatter: DateFormatter = {
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "ko_KR")
-        dateFormat.dateFormat = "yyyyMMdd"
-        dateFormat.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        dateFormat.dateFormat = "E"
         return dateFormat
     }()
     
@@ -46,5 +45,10 @@ extension DateFormatter {
     static func longToOnlyHour(dateString: String) -> String {
         guard let date = DateFormatter.stringToDateFormatter.date(from: dateString) else { return "-" }
         return DateFormatter.onlyHourDateFormatter.string(from: date)
+    }
+    
+    static func DateTodayOfWeek(dateString: String) -> String {
+        guard let date = DateFormatter.stringToDateFormatter.date(from: dateString) else { return "-" }
+        return DateFormatter.dayOfTheWeekDateFormatter.string(from: date)
     }
 }

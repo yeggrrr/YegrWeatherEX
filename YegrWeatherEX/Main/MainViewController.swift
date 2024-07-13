@@ -30,8 +30,12 @@ final class MainViewController: BaseViewController {
             self.setCurrentData(data: weatherData)
         }
         
-        mainViewModel.outputThreeDaysData.bind { threeDaysData in
+        mainViewModel.outputThreeDaysData.bind { _ in
             self.mainView.weatherCollectionView.reloadData()
+        }
+        
+        mainViewModel.outputTotalWeatherData.bind { _ in
+            self.mainView.weatherTableView.reloadData()
         }
     }
     
@@ -73,9 +77,10 @@ final class MainViewController: BaseViewController {
     
     func setCurrentData(data: CurrentWeatherData?) {
         guard let data = data else { return }
+        guard let firstWeather = data.weather.first else { return }
         self.mainView.locationLabel.text = data.name
         self.mainView.currentTempLabel.text = " \(Int(data.main.temp))º"
-        self.mainView.currentWeatherLabel.text = data.weather.first?.description
+        self.mainView.currentWeatherLabel.text = firstWeather.description
         self.mainView.highestTempLabel.text = "최고: \(Int(data.main.tempMax))º"
         self.mainView.lowestTempLabel.text = "최저: \(Int(data.main.tempMin))º"
         self.mainView.dividerLabel.text = "|"
@@ -114,12 +119,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return mainViewModel.outputTotalWeatherData.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.id, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
-        cell.backgroundColor = .clear
+        if let day = mainViewModel.outputTotalWeatherData.value[indexPath.row].first {
+            cell.dateLabel.text = DateFormatter.DateTodayOfWeek(dateString: day.dateText)
+            cell.lowestTempLabel.text = "최저 \(Int(day.main.tempMin))º"
+            cell.highestTempLabel.text = "최고 \(Int(day.main.tempMax))º"
+            cell.setImage(iconName: day.weather.first?.icon)
+            
+        }
+        
         return cell
     }
     

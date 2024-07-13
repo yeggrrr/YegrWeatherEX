@@ -49,18 +49,16 @@ class WeatherTableViewCell: BaseTableViewCell {
     }
     
     override func configureUI() {
-        contentView.backgroundColor = .clear
-        
-        dateLabel.text = "요일"
-        lowestTempLabel.text = "최저 23º"
-        highestTempLabel.text = "최고 31º"
+        backgroundColor = .clear
         
         dateLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 23, weight: .regular))
-        
-        weatherImage.image = UIImage(systemName: "sun.max.fill")
-        weatherImage.tintColor = .systemYellow
-        
         lowestTempLabel.setUI(txtColor: .lightGray, txtAlignment: .center, fontStyle: .systemFont(ofSize: 23, weight: .regular))
         highestTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 23, weight: .regular))
+    }
+    
+    func setImage(iconName: String?) {
+        guard let iconName = iconName else { return }
+        let imageURL = URL(string: "https://openweathermap.org/img/wn/\(iconName)@2x.png")
+        weatherImage.kf.setImage(with: imageURL)
     }
 }
