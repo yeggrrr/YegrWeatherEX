@@ -145,8 +145,8 @@
 		680082BE2C3EC34400ADD884 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				680083192C42963600ADD884 /* WeatherViewController.swift */,
-				680082F82C41028A00ADD884 /* WeatherViewModel.swift */,
+				680083472C42FD0100ADD884 /* VC */,
+				680083482C42FD0800ADD884 /* ViewModel */,
 				680082D32C3EE88A00ADD884 /* View */,
 				680082D42C3EE88F00ADD884 /* Cell */,
 			);
@@ -194,13 +194,12 @@
 		680082D42C3EE88F00ADD884 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6800831E2C42B55E00ADD884 /* CurrentInfoCell.swift */,
-				680083202C42B58900ADD884 /* ThreeHoursInfoCell.swift */,
-				6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */,
-				680083222C42B59900ADD884 /* FiveDaysInfoCell.swift */,
-				680083242C42B5A500ADD884 /* LocationInfoCell.swift */,
-				680083262C42B5B100ADD884 /* EtcInfoCell.swift */,
-				6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */,
+				680083412C42FC6100ADD884 /* Header */,
+				680083422C42FC6F00ADD884 /* Current */,
+				680083432C42FC7800ADD884 /* ThreeHours */,
+				680083442C42FC9D00ADD884 /* FiveDays */,
+				680083452C42FCA900ADD884 /* Location */,
+				680083462C42FCB200ADD884 /* Etc */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -208,8 +207,8 @@
 		680082D82C3F600D00ADD884 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				680082E22C3F950900ADD884 /* SearchCityViewController.swift */,
-				680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */,
+				680083492C42FD2100ADD884 /* VC */,
+				6800834A2C42FD2600ADD884 /* Cell */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -217,9 +216,9 @@
 		680082F52C3FD23600ADD884 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6800832F2C42D29500ADD884 /* City.swift */,
 				680082F62C3FD25900ADD884 /* CurrentWeatherData.swift */,
 				680082FD2C411DCB00ADD884 /* ThreeHoursWeatherData.swift */,
+				6800832F2C42D29500ADD884 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +238,87 @@
 				6800833D2C42D4AA00ADD884 /* CityRepository.swift */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		680083412C42FC6100ADD884 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		680083422C42FC6F00ADD884 /* Current */ = {
+			isa = PBXGroup;
+			children = (
+				6800831E2C42B55E00ADD884 /* CurrentInfoCell.swift */,
+			);
+			path = Current;
+			sourceTree = "<group>";
+		};
+		680083432C42FC7800ADD884 /* ThreeHours */ = {
+			isa = PBXGroup;
+			children = (
+				680083202C42B58900ADD884 /* ThreeHoursInfoCell.swift */,
+				6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */,
+			);
+			path = ThreeHours;
+			sourceTree = "<group>";
+		};
+		680083442C42FC9D00ADD884 /* FiveDays */ = {
+			isa = PBXGroup;
+			children = (
+				680083222C42B59900ADD884 /* FiveDaysInfoCell.swift */,
+			);
+			path = FiveDays;
+			sourceTree = "<group>";
+		};
+		680083452C42FCA900ADD884 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				680083242C42B5A500ADD884 /* LocationInfoCell.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		680083462C42FCB200ADD884 /* Etc */ = {
+			isa = PBXGroup;
+			children = (
+				680083262C42B5B100ADD884 /* EtcInfoCell.swift */,
+			);
+			path = Etc;
+			sourceTree = "<group>";
+		};
+		680083472C42FD0100ADD884 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				680083192C42963600ADD884 /* WeatherViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		680083482C42FD0800ADD884 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				680082F82C41028A00ADD884 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		680083492C42FD2100ADD884 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				680082E22C3F950900ADD884 /* SearchCityViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		6800834A2C42FD2600ADD884 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				680082E92C3FAAB400ADD884 /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
