@@ -92,7 +92,7 @@ final class MainViewController: BaseViewController {
     
     @objc func detailButtonClicked() {
         print(#function)
-        let vc = SearchViewController()
+        let vc = SearchCityViewController()
         vc.shift.enable()
         present(vc, animated: true, completion: nil)
     }
