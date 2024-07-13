@@ -134,7 +134,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         case .currentInfo:
             return 1
         case .threeHoursInfo:
-            return mainViewModel.outputThreeDaysData.value.count
+            return 1
         case .fiveDaysInfo:
             return mainViewModel.outputTotalWeatherData.value.count
         case .locationInfo:
@@ -158,10 +158,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         case .threeHoursInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThreeHoursInfoCell.id, for: indexPath) as? ThreeHoursInfoCell else { return UICollectionViewCell() }
-            let item = mainViewModel.outputThreeDaysData.value[indexPath.item]
-            cell.setImage(iconName: item.weather.first?.icon)
-            cell.tempLabel.text = "\(Int(item.main.temp))º"
-            cell.timeLabel.text = DateFormatter.longToOnlyHour(dateString: item.dateText)
+            cell.outputThreeDaysData = mainViewModel.outputThreeDaysData.value
             return cell
         case .fiveDaysInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiveDaysInfoCell.id, for: indexPath) as? FiveDaysInfoCell else { return UICollectionViewCell() }
@@ -196,7 +193,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             let size = CGSize(width: width, height: 350)
             return size
         case .threeHoursInfo:
-            let width = collectionView.frame.width / 5
+            let width = collectionView.frame.width
             let size = CGSize(width: width, height: 150)
             return size
         case .fiveDaysInfo:
