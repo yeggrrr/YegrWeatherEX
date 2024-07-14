@@ -184,7 +184,7 @@ extension SearchCityViewController: UISearchBarDelegate {
         if searchText.isEmpty || searchCityViewModel.inputSearchList.value.isEmpty {
             searchCityViewModel.inputSearchList.value = cityList
         } else {
-            searchCityViewModel.inputSearchList.value = cityList.filter { $0.name.contains(searchText) }
+            searchCityViewModel.inputSearchList.value = cityList.filter { $0.name.contains(searchText.lowercased()) }
         }
     }
     
