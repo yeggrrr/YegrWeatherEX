@@ -48,7 +48,22 @@
 		6800834D2C43A27F00ADD884 /* SearchCityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800834C2C43A27F00ADD884 /* SearchCityViewModel.swift */; };
 		680083512C43A6A400ADD884 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680083502C43A6A400ADD884 /* MapViewController.swift */; };
 		680083542C43B50B00ADD884 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 680083532C43B50B00ADD884 /* RealmSwift */; };
+		6843E2452C43C85200A64158 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 680083532C43B50B00ADD884 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6843E2462C43C85200A64158 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6843E2452C43C85200A64158 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6800828E2C3E64C800ADD884 /* YegrWeatherEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YegrWeatherEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +376,7 @@
 				6800828A2C3E64C800ADD884 /* Sources */,
 				6800828B2C3E64C800ADD884 /* Frameworks */,
 				6800828C2C3E64C800ADD884 /* Resources */,
+				6843E2462C43C85200A64158 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
