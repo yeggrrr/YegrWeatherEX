@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-
 class SearchCityViewController: BaseViewController {
     let searchCityViewModel = SearchCityViewModel()
     
@@ -123,6 +122,7 @@ class SearchCityViewController: BaseViewController {
             let decoder = JSONDecoder()
             let result = try decoder.decode([City].self, from: data)
             searchCityViewModel.inputSearchList.value = result
+            cityList = result
         } catch {
             print(error)
         }
@@ -181,7 +181,7 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchCityViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
+        if searchText.isEmpty || searchCityViewModel.inputSearchList.value.isEmpty {
             searchCityViewModel.inputSearchList.value = cityList
         } else {
             searchCityViewModel.inputSearchList.value = cityList.filter { $0.name.contains(searchText) }
