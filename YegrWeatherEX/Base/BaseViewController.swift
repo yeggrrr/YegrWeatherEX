@@ -22,4 +22,14 @@ class BaseViewController: UIViewController {
     func configureUI() { }
     
     func configureLayout() { }
+    
+    func alert(title: String, message: String, cancelHandler: UIAlertAction, okHandler: UIAlertAction) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = okHandler
+        let cancelButtion = cancelHandler
+        
+        alert.addAction(okButton)
+        alert.addAction(cancelButtion)
+        present(alert, animated: true)
+    }
 }

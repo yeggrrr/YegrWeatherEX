@@ -163,14 +163,16 @@ class WeatherViewController: BaseViewController {
     }
     
     @objc func mapButtonClicked() {
-        print(#function)
+        let vc = MapViewController()
+        vc.shift.enable()
+        present(vc, animated: true)
     }
     
     @objc func detailButtonClicked() {
         let vc = SearchCityViewController()
         vc.delegate = self
         vc.shift.enable()
-        present(vc, animated: true, completion: nil)
+        present(vc, animated: true)
     }
 }
 
@@ -257,8 +259,9 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         case .locationInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationInfoCell.id, for: indexPath) as? LocationInfoCell else { return UICollectionViewCell() }
-            guard let city = CityRepository.shared.fetch().first else { return UICollectionViewCell() }
-            cell.createAnnotaion(title: city.name, subtitle: city.country, coordinate: CLLocationCoordinate2D(latitude: city.coordLat, longitude: city.coordLon))
+            if let city = CityRepository.shared.fetch().first {
+                cell.createAnnotaion(title: city.name, subtitle: city.country, coordinate: CLLocationCoordinate2D(latitude: city.coordLat, longitude: city.coordLon))
+            }
             return cell
         case .etcInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EtcInfoCell.id, for: indexPath) as? EtcInfoCell else { return UICollectionViewCell() }

@@ -43,10 +43,11 @@
 		6800832D2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */; };
 		680083302C42D29500ADD884 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800832F2C42D29500ADD884 /* City.swift */; };
 		680083322C42D2C700ADD884 /* CityRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680083312C42D2C700ADD884 /* CityRealmModel.swift */; };
-		6800833C2C42D38600ADD884 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6800833B2C42D38600ADD884 /* RealmSwift */; };
 		6800833E2C42D4AA00ADD884 /* CityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800833D2C42D4AA00ADD884 /* CityRepository.swift */; };
 		680083402C42FB6500ADD884 /* WeatherSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */; };
 		6800834D2C43A27F00ADD884 /* SearchCityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800834C2C43A27F00ADD884 /* SearchCityViewModel.swift */; };
+		680083512C43A6A400ADD884 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680083502C43A6A400ADD884 /* MapViewController.swift */; };
+		680083542C43B50B00ADD884 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 680083532C43B50B00ADD884 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		6800833D2C42D4AA00ADD884 /* CityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepository.swift; sourceTree = "<group>"; };
 		6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionHeaderView.swift; sourceTree = "<group>"; };
 		6800834C2C43A27F00ADD884 /* SearchCityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewModel.swift; sourceTree = "<group>"; };
+		680083502C43A6A400ADD884 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +99,7 @@
 				680082E82C3F9E8400ADD884 /* Shift in Frameworks */,
 				680082BD2C3E8F3600ADD884 /* Kingfisher in Frameworks */,
 				680082BA2C3E8F2A00ADD884 /* SnapKit in Frameworks */,
-				6800833C2C42D38600ADD884 /* RealmSwift in Frameworks */,
+				680083542C43B50B00ADD884 /* RealmSwift in Frameworks */,
 				680082B72C3E8F1A00ADD884 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +139,7 @@
 				680082C12C3EC79B00ADD884 /* Base */,
 				680082BE2C3EC34400ADD884 /* Weather */,
 				680082D82C3F600D00ADD884 /* Search */,
+				6800834E2C43A68800ADD884 /* Map */,
 				6800829F2C3E64C900ADD884 /* Info.plist */,
 				680082B02C3E8D5500ADD884 /* APIKey.swift */,
 				680083282C42BF8700ADD884 /* CityList.json */,
@@ -332,6 +335,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6800834E2C43A68800ADD884 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				6800834F2C43A69300ADD884 /* VC */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		6800834F2C43A69300ADD884 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				680083502C43A6A400ADD884 /* MapViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -353,7 +372,7 @@
 				680082B92C3E8F2A00ADD884 /* SnapKit */,
 				680082BC2C3E8F3600ADD884 /* Kingfisher */,
 				680082E72C3F9E8400ADD884 /* Shift */,
-				6800833B2C42D38600ADD884 /* RealmSwift */,
+				680083532C43B50B00ADD884 /* RealmSwift */,
 			);
 			productName = YegrWeatherEX;
 			productReference = 6800828E2C3E64C800ADD884 /* YegrWeatherEX.app */;
@@ -388,7 +407,7 @@
 				680082B82C3E8F2A00ADD884 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				680082BB2C3E8F3600ADD884 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */,
-				6800833A2C42D38600ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				680083522C43B50B00ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 6800828F2C3E64C800ADD884 /* Products */;
 			projectDirPath = "";
@@ -433,6 +452,7 @@
 				6800831A2C42963600ADD884 /* WeatherViewController.swift in Sources */,
 				680082CB2C3EC8D200ADD884 /* ReusableProtocol+.swift in Sources */,
 				680083232C42B59900ADD884 /* FiveDaysInfoCell.swift in Sources */,
+				680083512C43A6A400ADD884 /* MapViewController.swift in Sources */,
 				680082922C3E64C800ADD884 /* AppDelegate.swift in Sources */,
 				680082E32C3F950900ADD884 /* SearchCityViewController.swift in Sources */,
 				680082B12C3E8D5500ADD884 /* APIKey.swift in Sources */,
@@ -592,6 +612,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3G6N8FDHBM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YegrWeatherEX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = YegrWeather;
@@ -624,6 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3G6N8FDHBM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YegrWeatherEX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = YegrWeather;
@@ -705,7 +727,7 @@
 				minimumVersion = 0.2.1;
 			};
 		};
-		6800833A2C42D38600ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		680083522C43B50B00ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -736,9 +758,9 @@
 			package = 680082E62C3F9E8400ADD884 /* XCRemoteSwiftPackageReference "Shift" */;
 			productName = Shift;
 		};
-		6800833B2C42D38600ADD884 /* RealmSwift */ = {
+		680083532C43B50B00ADD884 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6800833A2C42D38600ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 680083522C43B50B00ADD884 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
