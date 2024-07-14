@@ -10,6 +10,8 @@ import SnapKit
 
 
 class SearchCityViewController: BaseViewController {
+    let searchCityViewModel = SearchCityViewModel()
+    
     let backgroundImage = UIImageView()
     let dismissButton = UIButton(type: .system)
     let searchbar = UISearchBar()
@@ -25,6 +27,7 @@ class SearchCityViewController: BaseViewController {
         configureTableView()
         configureSearchBar()
         getCityList()
+        bindData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,6 +74,12 @@ class SearchCityViewController: BaseViewController {
         dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
     }
     
+    func bindData() {
+        searchCityViewModel.outputSearhList.bind { _ in
+            self.cityTableView.reloadData()
+        }
+    }
+    
     func configureSearchBar() {
         searchbar.delegate = self
         searchbar.showsCancelButton = true
@@ -113,7 +122,7 @@ class SearchCityViewController: BaseViewController {
         do {
             let decoder = JSONDecoder()
             let result = try decoder.decode([City].self, from: data)
-            cityList = result
+            searchCityViewModel.inputSearchList.value = result
         } catch {
             print(error)
         }
@@ -134,13 +143,13 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cityList.count
+        return  searchCityViewModel.outputSearhList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         cell.backgroundColor = .clear
-        let item = cityList[indexPath.row]
+        let item = searchCityViewModel.outputSearhList.value[indexPath.row]
         cell.countryLabel.text = item.country
         cell.regionLabel.text = item.name
         return cell
@@ -150,7 +159,7 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
         cityTableView.deselectRow(at: indexPath, animated: true)
         
         let objects = CityRepository.shared.fetch()
-        let selectedCity = cityList[indexPath.row]
+        let selectedCity = searchCityViewModel.outputSearhList.value[indexPath.row]
         if objects.isEmpty {
             let newCity = CityRealmModel(
                 cityId: selectedCity.id,
@@ -172,7 +181,11 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchCityViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        if searchText.isEmpty {
+            searchCityViewModel.inputSearchList.value = cityList
+        } else {
+            searchCityViewModel.inputSearchList.value = cityList.filter { $0.name.contains(searchText) }
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
