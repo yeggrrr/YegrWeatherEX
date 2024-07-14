@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+
 class SearchCityViewController: BaseViewController {
     let backgroundImage = UIImageView()
     let dismissButton = UIButton(type: .system)
@@ -22,6 +23,7 @@ class SearchCityViewController: BaseViewController {
         super.viewDidLoad()
         
         configureTableView()
+        configureSearchBar()
         getCityList()
     }
     
@@ -64,21 +66,28 @@ class SearchCityViewController: BaseViewController {
     
     override func configureUI() {
         backgroundImage.image = UIImage(named: "weatherBackgroundDark")
-        
+        dismissButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        dismissButton.tintColor = .white
+        dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
+    }
+    
+    func configureSearchBar() {
+        searchbar.delegate = self
+        searchbar.showsCancelButton = true
+        searchbar.barTintColor = .white
         searchbar.searchBarStyle = .minimal
         searchbar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for a city", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         searchbar.searchTextField.leftView?.tintColor = .white
         searchbar.searchTextField.textColor = .white
-        
-        dismissButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        dismissButton.tintColor = .white
-        dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
+        searchbar.keyboardType = .asciiCapable
+        searchbar.keyboardAppearance = .light
     }
     
     func configureTableView() {
         cityTableView.delegate = self
         cityTableView.dataSource = self
         cityTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
+        cityTableView.keyboardDismissMode = .onDrag
         cityTableView.backgroundColor = .clear
         cityTableView.separatorStyle = .singleLine
         cityTableView.separatorColor = .white
@@ -108,6 +117,10 @@ class SearchCityViewController: BaseViewController {
         } catch {
             print(error)
         }
+    }
+    
+    private func dismissKeyboard() {
+        searchbar.resignFirstResponder()
     }
     
     @objc func dismissButtonClicked() {
@@ -154,6 +167,16 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
         dismiss(animated: true) {
             self.delegate?.reloadCityInfo()
         }
+    }
+}
+
+extension SearchCityViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
     }
 }
 

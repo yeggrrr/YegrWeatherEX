@@ -46,5 +46,4 @@ class SearchTableViewCell: BaseTableViewCell {
         regionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold))
         countryLabel.setUI(txtColor: .lightGray, txtAlignment: .left, fontStyle: .systemFont(ofSize: 15, weight: .regular))
     }
-    
 }
