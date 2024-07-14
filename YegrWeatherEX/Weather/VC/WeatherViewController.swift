@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Shift
+import MapKit
 
 class WeatherViewController: BaseViewController {
     enum SectionType {
@@ -26,6 +27,7 @@ class WeatherViewController: BaseViewController {
     let weatherViewModel = WeatherViewModel()
     var currentInfoData: CurrentInfoData?
     var ectInfoDataList: [EtcInfoData] = []
+    var mycoordinate: CLLocationCoordinate2D?
     
     struct CurrentInfoData {
         let location: String
@@ -141,6 +143,7 @@ class WeatherViewController: BaseViewController {
     func getCityData() {
         guard let city = CityRepository.shared.fetch().first else { return }
         weatherViewModel.callRequest(id: city.cityId)
+        self.weatherView.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
     func configureCollectionView() {
@@ -247,7 +250,6 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.lowestTempLabel.text = "최저 \(Int(day.main.tempMin))º"
             cell.highestTempLabel.text = "최고 \(Int(day.main.tempMax))º"
             cell.setImage(iconName: day.weather.first?.icon)
-            
             let targetDate = DateFormatter.longToShortDate(dateString: day.dateText)
             let todayDate = DateFormatter.onlyDateFormatter.string(from: Date())
             let isToday = targetDate == todayDate
@@ -255,6 +257,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         case .locationInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationInfoCell.id, for: indexPath) as? LocationInfoCell else { return UICollectionViewCell() }
+            guard let city = CityRepository.shared.fetch().first else { return UICollectionViewCell() }
+            cell.createAnnotaion(title: city.name, subtitle: city.country, coordinate: CLLocationCoordinate2D(latitude: city.coordLat, longitude: city.coordLon))
             return cell
         case .etcInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EtcInfoCell.id, for: indexPath) as? EtcInfoCell else { return UICollectionViewCell() }
@@ -293,9 +297,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-extension WeatherViewController: CityDelegate  {
+extension WeatherViewController: CityDelegate {
     func reloadCityInfo() {
         getCityData()
-        self.weatherView.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
 }

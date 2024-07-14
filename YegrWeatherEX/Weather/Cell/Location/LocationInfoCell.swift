@@ -14,13 +14,11 @@ class LocationInfoCell: BaseCollectionViewCell {
     let titleLabel = UILabel()
     let mapView = MKMapView()
     
-    var locationStatus: CLAuthorizationStatus?
     var mycoordinate: CLLocationCoordinate2D?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureLocation()
         createAnnotaion(title: "Seoul", subtitle: "", coordinate: CLLocationCoordinate2D(latitude: 37.56826, longitude: 126.977829))
     }
     
@@ -55,36 +53,5 @@ class LocationInfoCell: BaseCollectionViewCell {
         annotation.title = title
         annotation.subtitle = subtitle
         mapView.addAnnotation(annotation)
-    }
-    
-    func configureLocation() {
-        mapView.showsUserLocation = true
-        mapView.setUserTrackingMode(.follow, animated: true)
-    }
-}
-
-extension LocationInfoCell: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !(annotation is MKUserLocation) else { return nil }
-        let identifier = "Custom"
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        if annotationView == nil {
-            // 재사용 가능한 식별자를 갖고 어노테이션 뷰를 생성
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            
-            // 콜아웃 버튼을 보이게 함
-            annotationView?.canShowCallout = true
-            // 이미지 변경
-            annotationView?.image = UIImage(systemName: "star.fill")
-            
-            // 상세 버튼 생성 후 액세서리에 추가 (i 모양 버튼)
-            // 버튼을 만들어주면 callout 부분 전체가 버튼 역활을 합니다
-            let button = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = button
-        }
-        
-        return annotationView
     }
 }
