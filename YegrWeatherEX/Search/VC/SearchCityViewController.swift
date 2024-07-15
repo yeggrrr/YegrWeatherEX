@@ -10,7 +10,6 @@ import SnapKit
 
 class SearchCityViewController: BaseViewController {
     let searchCityViewModel = SearchCityViewModel()
-    let backgroundImage = UIImageView()
     let searchCityView = SearchCityView()
     
     var cityList: [City] = []
@@ -33,24 +32,16 @@ class SearchCityViewController: BaseViewController {
     }
     
     override func configureHierarchy() {
-        view.addSubview(backgroundImage)
         view.addSubview(searchCityView)
     }
     
     override func configureLayout() {
-        let safeArea = view.safeAreaLayoutGuide
-        
         searchCityView.snp.makeConstraints {
-            $0.edges.equalTo(safeArea)
-        }
-        
-        backgroundImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
     
     override func configureUI() {
-        backgroundImage.image = UIImage(named: "weatherBackgroundDark")
         searchCityView.dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
     }
     
