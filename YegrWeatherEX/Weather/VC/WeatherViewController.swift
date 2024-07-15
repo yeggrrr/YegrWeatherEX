@@ -245,6 +245,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         case .threeHoursInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThreeHoursInfoCell.id, for: indexPath) as? ThreeHoursInfoCell else { return UICollectionViewCell() }
             cell.outputThreeDaysData = weatherViewModel.outputThreeDaysData.value
+            cell.threeHoursInfoCollectionView.reloadData()
             return cell
         case .fiveDaysInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiveDaysInfoCell.id, for: indexPath) as? FiveDaysInfoCell else { return UICollectionViewCell() }
