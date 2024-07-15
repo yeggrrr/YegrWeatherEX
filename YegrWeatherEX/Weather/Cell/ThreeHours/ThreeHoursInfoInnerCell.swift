@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ThreeHoursInfoInnerCell: BaseCollectionViewCell {
+final class ThreeHoursInfoInnerCell: BaseCollectionViewCell {
     let timeLabel = UILabel()
     let weatherImage = UIImageView()
     let tempLabel = UILabel()

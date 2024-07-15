@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class SearchCityViewController: BaseViewController {
-    let searchCityViewModel = SearchCityViewModel()
-    let searchCityView = SearchCityView()
+final class SearchCityViewController: BaseViewController {
+    private let searchCityViewModel = SearchCityViewModel()
+    private let searchCityView = SearchCityView()
     
-    var cityList: [City] = []
+    private var cityList: [City] = []
     
     weak var delegate: CityDelegate?
     
@@ -45,25 +45,25 @@ class SearchCityViewController: BaseViewController {
         searchCityView.dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
     }
     
-    func bindData() {
+    private func bindData() {
         searchCityViewModel.outputSearhList.bind { _ in
             self.searchCityView.cityTableView.reloadData()
         }
     }
     
-    func configureSearchBar() {
+    private func configureSearchBar() {
         searchCityView.searchbar.delegate = self
         searchCityView.searchbar.setUI(placeholder: "Search for a city")
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         searchCityView.cityTableView.delegate = self
         searchCityView.cityTableView.dataSource = self
         searchCityView.cityTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
         searchCityView.cityTableView.setUI()
     }
     
-    func load() -> Data? {
+    private func load() -> Data? {
         let fileName = "CityList"
         let extensionType = "json"
         
@@ -77,7 +77,7 @@ class SearchCityViewController: BaseViewController {
         }
     }
     
-    func getCityList() {
+    private func getCityList() {
         guard let data = load() else { return }
         do {
             let decoder = JSONDecoder()

@@ -10,19 +10,19 @@ import SnapKit
 import Shift
 import MapKit
 
-class WeatherViewController: BaseViewController {
-    let weatherViewModel = WeatherViewModel()
+final class WeatherViewController: BaseViewController {
+    private let weatherViewModel = WeatherViewModel()
     
-    let backgroundImage = UIImageView()
-    let weatherView = WeatherView()
+    private let backgroundImage = UIImageView()
+    private let weatherView = WeatherView()
     
-    let sectionList: [SectionType] = [.currentInfo, .threeHoursInfo, .fiveDaysInfo, .locationInfo, .etcInfo]
+    private let sectionList: [SectionType] = [.currentInfo, .threeHoursInfo, .fiveDaysInfo, .locationInfo, .etcInfo]
     
-    var currentInfoData: CurrentInfoData?
-    var ectInfoDataList: [EtcInfoData] = []
-    var mycoordinate: CLLocationCoordinate2D?
+    private var currentInfoData: CurrentInfoData?
+    private var ectInfoDataList: [EtcInfoData] = []
+    private var mycoordinate: CLLocationCoordinate2D?
     
-    enum SectionType {
+    private enum SectionType {
         case currentInfo
         case threeHoursInfo
         case fiveDaysInfo
@@ -30,7 +30,7 @@ class WeatherViewController: BaseViewController {
         case etcInfo
     }
     
-    struct CurrentInfoData {
+    private struct CurrentInfoData {
         let location: String
         let currentTemp: String
         let currentWeather: String
@@ -39,7 +39,7 @@ class WeatherViewController: BaseViewController {
         let divider: String
     }
     
-    struct EtcInfoData {
+    private struct EtcInfoData {
         let title: String
         let description: String
         let firstDetailInfo: String
@@ -81,7 +81,7 @@ class WeatherViewController: BaseViewController {
         backgroundImage.image = UIImage(named: "weatherBackground")
     }
     
-    func bindData() {
+    private func bindData() {
         weatherViewModel.inputViewDidLoadTrigger.value = ()
         weatherViewModel.outputWeatherData.bind { weatherData in
             self.setCurrentData(data: weatherData)
@@ -97,7 +97,7 @@ class WeatherViewController: BaseViewController {
         }
     }
     
-    func setCurrentData(data: CurrentWeatherData?) {
+    private func setCurrentData(data: CurrentWeatherData?) {
         guard let data = data else { return }
         guard let firstWeather = data.weather.first else { return }
         currentInfoData = CurrentInfoData(
@@ -110,7 +110,7 @@ class WeatherViewController: BaseViewController {
         self.weatherView.collectionView.reloadSections(IndexSet(integer: 0))
     }
     
-    func setEtcInfoData(data: CurrentWeatherData?) {
+    private func setEtcInfoData(data: CurrentWeatherData?) {
         guard let data = data else { return }
         let windSpeed = EtcInfoData(
             title: "바람 속도",
@@ -140,13 +140,13 @@ class WeatherViewController: BaseViewController {
         self.weatherView.collectionView.reloadSections(IndexSet(integer: 4))
     }
     
-    func getCityData() {
+    private func getCityData() {
         guard let city = CityRepository.shared.fetch().first else { return }
         weatherViewModel.callRequest(id: city.cityId)
         self.weatherView.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.collectionView.register(CurrentInfoCell.self, forCellWithReuseIdentifier: CurrentInfoCell.id)
@@ -159,7 +159,7 @@ class WeatherViewController: BaseViewController {
         weatherView.collectionView.showsVerticalScrollIndicator = false
     }
     
-    func configureAction() {
+    private func configureAction() {
         weatherView.mapButton.addTarget(self, action: #selector(mapButtonClicked), for: .touchUpInside)
         weatherView.detailButton.addTarget(self, action: #selector(detailButtonClicked), for: .touchUpInside)
     }

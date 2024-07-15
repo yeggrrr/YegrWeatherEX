@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CurrentInfoCell: BaseCollectionViewCell {
+final class CurrentInfoCell: BaseCollectionViewCell {
     let todayView = TodayView()
     
     override func configureHierarchy() {

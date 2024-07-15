@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class EtcInfoCell: BaseCollectionViewCell {
-    let verticalStackView = UIStackView()
+final class EtcInfoCell: BaseCollectionViewCell {
+    private let verticalStackView = UIStackView()
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
     let firstDetailInfoLabel = UILabel()

@@ -8,14 +8,14 @@
 import UIKit
 import SnapKit
 
-class TodayView: UIView {
-    let tempView = UIView()
+final class TodayView: UIView {
+    private let tempView = UIView()
     
     let locationLabel = UILabel()
     let currentTempLabel = UILabel()
     let currentWeatherLabel = UILabel()
     
-    let highLowTempStackView = UIStackView()
+    private let highLowTempStackView = UIStackView()
     let highestTempLabel = UILabel()
     let dividerLabel = UILabel()
     let lowestTempLabel = UILabel()
@@ -32,7 +32,7 @@ class TodayView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         addSubview(tempView)
         tempView.addSubview(locationLabel)
         tempView.addSubview(currentTempLabel)
@@ -43,7 +43,7 @@ class TodayView: UIView {
         highLowTempStackView.addArrangedSubview(lowestTempLabel)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         let safeArea = safeAreaLayoutGuide
         
         tempView.snp.makeConstraints {
@@ -89,7 +89,7 @@ class TodayView: UIView {
         }
     }
     
-    func configureUI() {
+    private func configureUI() {
         locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 40, weight: .regular))
         currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 80, weight: .thin))
         currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))

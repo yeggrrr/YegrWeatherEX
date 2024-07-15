@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ThreeHoursInfoCell: BaseCollectionViewCell {
+final class ThreeHoursInfoCell: BaseCollectionViewCell {
     let threeHoursInfoCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal

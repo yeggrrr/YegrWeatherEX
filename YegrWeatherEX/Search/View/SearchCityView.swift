@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class SearchCityView: UIView {
-    let backgroundImage = UIImageView()
+final class SearchCityView: UIView {
+    private let backgroundImage = UIImageView()
     let dismissButton = UIButton(type: .system)
     let searchbar = UISearchBar()
     let cityTableView = UITableView()
@@ -26,14 +26,14 @@ class SearchCityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         addSubview(backgroundImage)
         addSubview(dismissButton)
         addSubview(searchbar)
         addSubview(cityTableView)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         let safeArea = safeAreaLayoutGuide
         
         backgroundImage.snp.makeConstraints {
@@ -58,7 +58,7 @@ class SearchCityView: UIView {
         }
     }
     
-    func configureUI() {
+    private func configureUI() {
         backgroundImage.image = UIImage(named: "weatherBackgroundDark")
         
         dismissButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)

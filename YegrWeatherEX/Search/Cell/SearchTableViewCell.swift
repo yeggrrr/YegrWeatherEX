@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class SearchTableViewCell: BaseTableViewCell {
-    let nameStackView = UIStackView()
+final class SearchTableViewCell: BaseTableViewCell {
+    private let nameStackView = UIStackView()
     let regionLabel = UILabel()
     let countryLabel = UILabel()
     

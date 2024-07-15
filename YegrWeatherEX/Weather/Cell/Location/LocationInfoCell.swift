@@ -10,11 +10,11 @@ import SnapKit
 import MapKit
 import CoreLocation
 
-class LocationInfoCell: BaseCollectionViewCell {
+final class LocationInfoCell: BaseCollectionViewCell {
     let titleLabel = UILabel()
-    let mapView = MKMapView()
+    private let mapView = MKMapView()
     
-    var mycoordinate: CLLocationCoordinate2D?
+    private var mycoordinate: CLLocationCoordinate2D?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

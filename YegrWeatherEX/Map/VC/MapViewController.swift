@@ -10,13 +10,13 @@ import SnapKit
 import MapKit
 import CoreLocation
 
-class MapViewController: BaseViewController {
-    let mapView = MapView()
+final class MapViewController: BaseViewController {
+    private let mapView = MapView()
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
-    var locationStatus: CLAuthorizationStatus?
-    var mycoordinate: CLLocationCoordinate2D?
+    private var locationStatus: CLAuthorizationStatus?
+    private var mycoordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class MapViewController: BaseViewController {
         locationManager.delegate = self
     }
     
-    func setLocation(latitude: Double, longitude: Double, name: String ) {
+    private func setLocation(latitude: Double, longitude: Double, name: String ) {
         let currentLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let annotation = MKPointAnnotation()
         

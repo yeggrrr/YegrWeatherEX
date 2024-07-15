@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WeatherViewModel {
+final class WeatherViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
     
     var outputWeatherData: Observable<CurrentWeatherData?> = Observable(nil)
@@ -18,7 +18,7 @@ class WeatherViewModel {
         transform()
     }
     
-    func transform() {
+    private func transform() {
         inputViewDidLoadTrigger.bind { _ in
             self.callRequest(id: 1835847)
         }
@@ -51,7 +51,7 @@ class WeatherViewModel {
         }
     }
     
-    func getDateText(add day: Int) -> String {
+    private func getDateText(add day: Int) -> String {
         let today = Date()
         let calendar = Calendar(identifier: .gregorian)
         let dateComponents = DateComponents(day: day)

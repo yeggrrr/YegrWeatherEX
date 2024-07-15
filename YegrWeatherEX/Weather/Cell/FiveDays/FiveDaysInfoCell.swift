@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class FiveDaysInfoCell: BaseCollectionViewCell {
+final class FiveDaysInfoCell: BaseCollectionViewCell {
     let dateLabel = UILabel()
     let weatherImage = UIImageView()
     let lowestTempLabel = UILabel()

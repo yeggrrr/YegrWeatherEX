@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class WeatherSectionHeaderView: UICollectionReusableView {
-    let containerView = UIView()
+final class WeatherSectionHeaderView: UICollectionReusableView {
+    private let containerView = UIView()
     let iconImage = UIImageView()
     let titleLabel = UILabel()
     
@@ -23,7 +23,7 @@ class WeatherSectionHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpHeaderView() {
+    private func setUpHeaderView() {
         addSubview(containerView)
         containerView.addSubview(iconImage)
         containerView.addSubview(titleLabel)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchCityViewModel {
+final class SearchCityViewModel {
     var inputSearchList: Observable<[City]> = Observable([])
     var outputSearhList: Observable<[City]> = Observable([])
     
