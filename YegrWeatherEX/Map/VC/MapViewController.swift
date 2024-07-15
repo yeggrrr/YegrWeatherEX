@@ -11,9 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapViewController: BaseViewController {
-    let backgroundImage = UIImageView()
-    let xButton = UIButton(type: .system)
-    let mapview = MKMapView()
+    let mapView = MapView()
+    
     let locationManager = CLLocationManager()
     
     var locationStatus: CLAuthorizationStatus?
@@ -26,52 +25,33 @@ class MapViewController: BaseViewController {
     }
     
     override func configureHierarchy() {
-        view.addSubview(backgroundImage)
-        view.addSubview(xButton)
-        view.addSubview(mapview)
+        view.addSubview(mapView)
     }
     
     override func configureLayout() {
-        let safeArea = view.safeAreaLayoutGuide
-        
-        backgroundImage.snp.makeConstraints {
+        mapView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-        
-        xButton.snp.makeConstraints {
-            $0.top.trailing.equalTo(safeArea).inset(10)
-            $0.height.width.equalTo(30)
-        }
-        
-        mapview.snp.makeConstraints {
-            $0.top.equalTo(xButton.snp.bottom).offset(10)
-            $0.bottom.horizontalEdges.equalTo(safeArea).inset(20)
         }
     }
     
     override func configureUI() {
-        backgroundImage.image = UIImage(named: "weatherBackgroundDark")
-        xButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        xButton.tintColor = .white
-        xButton.addTarget(self, action: #selector(xButtonClicked), for: .touchUpInside)
-        
-        mapview.layer.cornerRadius = 10
+        mapView.xButton.addTarget(self, action: #selector(xButtonClicked), for: .touchUpInside)
     }
     
     func configureLocation() {
         locationManager.delegate = self
-        mapview.showsUserLocation = true
-        mapview.setUserTrackingMode(.follow, animated: true)
+        mapView.mapview.showsUserLocation = true
+        mapView.mapview.setUserTrackingMode(.follow, animated: true)
     }
     
     func setLocation(latitude: Double, longitude: Double, name: String ) {
         let currentLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        mapview.region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 400, longitudinalMeters: 400)
+        mapView.mapview.region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 400, longitudinalMeters: 400)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = currentLocation
         annotation.title = "\(name)"
-        mapview.addAnnotation(annotation)
+        mapView.mapview.addAnnotation(annotation)
     }
     
     @objc func xButtonClicked() {
@@ -114,7 +94,7 @@ extension MapViewController {
     
     func setRegionAndAnnotation(center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 300, longitudinalMeters: 300)
-        mapview.setRegion(region, animated: true)
+        mapView.mapview.setRegion(region, animated: true)
     }
 }
 
