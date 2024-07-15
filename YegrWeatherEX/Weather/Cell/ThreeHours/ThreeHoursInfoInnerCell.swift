@@ -48,7 +48,7 @@ class ThreeHoursInfoInnerCell: BaseCollectionViewCell {
     
     func setImage(iconName: String?) {
         guard let iconName = iconName else { return }
-        let imageURL = URL(string: "https://openweathermap.org/img/wn/\(iconName)@2x.png")
+        let imageURL = URL(string: "\(ImageURL.imageURL)\(iconName)@2x.png")
         weatherImage.kf.setImage(with: imageURL)
     }
 }

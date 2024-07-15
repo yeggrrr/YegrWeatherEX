@@ -11,6 +11,17 @@ import Shift
 import MapKit
 
 class WeatherViewController: BaseViewController {
+    let weatherViewModel = WeatherViewModel()
+    
+    let backgroundImage = UIImageView()
+    let weatherView = WeatherView()
+    
+    let sectionList: [SectionType] = [.currentInfo, .threeHoursInfo, .fiveDaysInfo, .locationInfo, .etcInfo]
+    
+    var currentInfoData: CurrentInfoData?
+    var ectInfoDataList: [EtcInfoData] = []
+    var mycoordinate: CLLocationCoordinate2D?
+    
     enum SectionType {
         case currentInfo
         case threeHoursInfo
@@ -18,16 +29,6 @@ class WeatherViewController: BaseViewController {
         case locationInfo
         case etcInfo
     }
-    
-    let backgroundImage = UIImageView()
-    let weatherView = WeatherView()
-    
-    let sectionList: [SectionType] = [.currentInfo, .threeHoursInfo, .fiveDaysInfo, .locationInfo, .etcInfo]
-    
-    let weatherViewModel = WeatherViewModel()
-    var currentInfoData: CurrentInfoData?
-    var ectInfoDataList: [EtcInfoData] = []
-    var mycoordinate: CLLocationCoordinate2D?
     
     struct CurrentInfoData {
         let location: String
@@ -48,9 +49,10 @@ class WeatherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindData()
         configureCollectionView()
         configureUI()
-        bindData()
+        configureAction()
         
         CityRepository.shared.findFilePath()
     }
@@ -149,15 +151,17 @@ class WeatherViewController: BaseViewController {
     func configureCollectionView() {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
-        
         weatherView.collectionView.register(CurrentInfoCell.self, forCellWithReuseIdentifier: CurrentInfoCell.id)
         weatherView.collectionView.register(ThreeHoursInfoCell.self, forCellWithReuseIdentifier: ThreeHoursInfoCell.id)
         weatherView.collectionView.register(FiveDaysInfoCell.self, forCellWithReuseIdentifier: FiveDaysInfoCell.id)
         weatherView.collectionView.register(LocationInfoCell.self, forCellWithReuseIdentifier: LocationInfoCell.id)
         weatherView.collectionView.register(EtcInfoCell.self, forCellWithReuseIdentifier: EtcInfoCell.id)
-        weatherView.collectionView.showsVerticalScrollIndicator = false
         weatherView.collectionView.register(WeatherSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherSectionHeaderView.id)
         
+        weatherView.collectionView.showsVerticalScrollIndicator = false
+    }
+    
+    func configureAction() {
         weatherView.mapButton.addTarget(self, action: #selector(mapButtonClicked), for: .touchUpInside)
         weatherView.detailButton.addTarget(self, action: #selector(detailButtonClicked), for: .touchUpInside)
     }
@@ -240,7 +244,6 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.todayView.highestTempLabel.text = currentInfoData.highestTemp
             cell.todayView.lowestTempLabel.text = currentInfoData.lowestTemp
             cell.todayView.dividerLabel.text = currentInfoData.divider
-            cell.backgroundColor = .clear
             return cell
         case .threeHoursInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThreeHoursInfoCell.id, for: indexPath) as? ThreeHoursInfoCell else { return UICollectionViewCell() }

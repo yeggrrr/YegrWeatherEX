@@ -81,25 +81,14 @@ class SearchCityViewController: BaseViewController {
     
     func configureSearchBar() {
         searchbar.delegate = self
-        searchbar.showsCancelButton = true
-        searchbar.barTintColor = .white
-        searchbar.searchBarStyle = .minimal
-        searchbar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for a city", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
-        searchbar.searchTextField.leftView?.tintColor = .white
-        searchbar.searchTextField.textColor = .white
-        searchbar.keyboardType = .asciiCapable
-        searchbar.keyboardAppearance = .light
+        searchbar.setUI(placeholder: "Search for a city")
     }
     
     func configureTableView() {
         cityTableView.delegate = self
         cityTableView.dataSource = self
         cityTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
-        cityTableView.keyboardDismissMode = .onDrag
-        cityTableView.backgroundColor = .clear
-        cityTableView.separatorStyle = .singleLine
-        cityTableView.separatorColor = .white
-        cityTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        cityTableView.setUI()
     }
     
     func load() -> Data? {

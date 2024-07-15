@@ -14,6 +14,7 @@ class ThreeHoursInfoCell: BaseCollectionViewCell {
         flowLayout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
+    
     var outputThreeDaysData: [ThreeHoursFiveDaysWeatherData.List] = []
    
     override func configureHierarchy() {

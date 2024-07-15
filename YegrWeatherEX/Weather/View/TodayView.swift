@@ -93,15 +93,9 @@ class TodayView: UIView {
         locationLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 40, weight: .regular))
         currentTempLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 80, weight: .thin))
         currentWeatherLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .regular))
-        
-        highLowTempStackView.axis = .horizontal
-        highLowTempStackView.spacing = 10
-        highLowTempStackView.alignment = .center
-        highLowTempStackView.distribution = .fillProportionally
-        
+        highLowTempStackView.setUI(asisSV: .horizontal, spacingSV: 10, alignmentSV: .center, distributionSV: .fillProportionally)
         highestTempLabel.setUI(txtColor: .white, txtAlignment: .right, fontStyle: .systemFont(ofSize: 20, weight: .regular))
         lowestTempLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .regular))
         dividerLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 20, weight: .semibold))
     }
 }
-

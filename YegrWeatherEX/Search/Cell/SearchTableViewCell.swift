@@ -37,13 +37,10 @@ class SearchTableViewCell: BaseTableViewCell {
     }
     
     override func configureUI() {
-        nameStackView.axis = .vertical
-        nameStackView.spacing = 0
-        nameStackView.distribution = .fillEqually
-        
-        regionLabel.text = "지역이름"
-        countryLabel.text = "나라이름"
+        nameStackView.setUI(asisSV: .vertical, spacingSV: 0, alignmentSV: .fill, distributionSV: .fillEqually)
         regionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold))
         countryLabel.setUI(txtColor: .lightGray, txtAlignment: .left, fontStyle: .systemFont(ofSize: 15, weight: .regular))
+        regionLabel.text = "지역이름"
+        countryLabel.text = "나라이름"
     }
 }
