@@ -10,11 +10,8 @@ import SnapKit
 
 class SearchCityViewController: BaseViewController {
     let searchCityViewModel = SearchCityViewModel()
-    
     let backgroundImage = UIImageView()
-    let dismissButton = UIButton(type: .system)
-    let searchbar = UISearchBar()
-    let cityTableView = UITableView()
+    let searchCityView = SearchCityView()
     
     var cityList: [City] = []
     
@@ -37,58 +34,42 @@ class SearchCityViewController: BaseViewController {
     
     override func configureHierarchy() {
         view.addSubview(backgroundImage)
-        view.addSubview(dismissButton)
-        view.addSubview(searchbar)
-        view.addSubview(cityTableView)
+        view.addSubview(searchCityView)
     }
     
     override func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
+        
+        searchCityView.snp.makeConstraints {
+            $0.edges.equalTo(safeArea)
+        }
+        
         backgroundImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-        
-        dismissButton.snp.makeConstraints {
-            $0.top.equalTo(safeArea).offset(10)
-            $0.leading.equalTo(safeArea).offset(10)
-            $0.width.height.equalTo(30)
-        }
-        
-        searchbar.snp.makeConstraints {
-            $0.top.equalTo(dismissButton.snp.bottom).offset(10)
-            $0.horizontalEdges.equalTo(safeArea)
-        }
-        
-        cityTableView.snp.makeConstraints {
-            $0.top.equalTo(searchbar.snp.bottom)
-            $0.horizontalEdges.equalTo(safeArea).inset(10)
-            $0.bottom.equalTo(safeArea)
         }
     }
     
     override func configureUI() {
         backgroundImage.image = UIImage(named: "weatherBackgroundDark")
-        dismissButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        dismissButton.tintColor = .white
-        dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
+        searchCityView.dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
     }
     
     func bindData() {
         searchCityViewModel.outputSearhList.bind { _ in
-            self.cityTableView.reloadData()
+            self.searchCityView.cityTableView.reloadData()
         }
     }
     
     func configureSearchBar() {
-        searchbar.delegate = self
-        searchbar.setUI(placeholder: "Search for a city")
+        searchCityView.searchbar.delegate = self
+        searchCityView.searchbar.setUI(placeholder: "Search for a city")
     }
     
     func configureTableView() {
-        cityTableView.delegate = self
-        cityTableView.dataSource = self
-        cityTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
-        cityTableView.setUI()
+        searchCityView.cityTableView.delegate = self
+        searchCityView.cityTableView.dataSource = self
+        searchCityView.cityTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
+        searchCityView.cityTableView.setUI()
     }
     
     func load() -> Data? {
@@ -118,7 +99,7 @@ class SearchCityViewController: BaseViewController {
     }
     
     private func dismissKeyboard() {
-        searchbar.resignFirstResponder()
+        searchCityView.searchbar.resignFirstResponder()
     }
     
     @objc func dismissButtonClicked() {
@@ -145,7 +126,7 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cityTableView.deselectRow(at: indexPath, animated: true)
+        searchCityView.cityTableView.deselectRow(at: indexPath, animated: true)
         
         let objects = CityRepository.shared.fetch()
         let selectedCity = searchCityViewModel.outputSearhList.value[indexPath.row]

@@ -52,6 +52,7 @@
 		6843E2502C45042700A64158 /* UISearchBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6843E24F2C45042700A64158 /* UISearchBar+.swift */; };
 		6843E2522C4504D400A64158 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6843E2512C4504D400A64158 /* UITableView+.swift */; };
 		6843E2542C45064300A64158 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6843E2532C45064300A64158 /* UIStackView+.swift */; };
+		6843E2572C4509CC00A64158 /* SearchCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6843E2562C4509CC00A64158 /* SearchCityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +111,7 @@
 		6843E24F2C45042700A64158 /* UISearchBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+.swift"; sourceTree = "<group>"; };
 		6843E2512C4504D400A64158 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		6843E2532C45064300A64158 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		6843E2562C4509CC00A64158 /* SearchCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +173,8 @@
 		680082BE2C3EC34400ADD884 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				680083472C42FD0100ADD884 /* VC */,
 				680083482C42FD0800ADD884 /* ViewModel */,
+				680083472C42FD0100ADD884 /* VC */,
 				680082D32C3EE88A00ADD884 /* View */,
 				680082D42C3EE88F00ADD884 /* Cell */,
 			);
@@ -238,6 +240,7 @@
 			children = (
 				6800834B2C43A26F00ADD884 /* ViewModel */,
 				680083492C42FD2100ADD884 /* VC */,
+				6843E2552C45099D00A64158 /* View */,
 				6800834A2C42FD2600ADD884 /* Cell */,
 			);
 			path = Search;
@@ -375,6 +378,14 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		6843E2552C45099D00A64158 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6843E2562C4509CC00A64158 /* SearchCityView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -467,6 +478,7 @@
 				680082C32C3EC7AE00ADD884 /* BaseViewController.swift in Sources */,
 				680083322C42D2C700ADD884 /* CityRealmModel.swift in Sources */,
 				680083302C42D29500ADD884 /* City.swift in Sources */,
+				6843E2572C4509CC00A64158 /* SearchCityView.swift in Sources */,
 				6800832D2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift in Sources */,
 				6800833E2C42D4AA00ADD884 /* CityRepository.swift in Sources */,
 				680083002C412C1E00ADD884 /* DateFormatter+.swift in Sources */,
