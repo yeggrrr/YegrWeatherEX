@@ -185,14 +185,10 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch sectionList[section] {
-        case .currentInfo:
-            return 1
-        case .threeHoursInfo:
+        case .currentInfo, .threeHoursInfo, .locationInfo:
             return 1
         case .fiveDaysInfo:
             return weatherViewModel.outputTotalWeatherData.value.count
-        case .locationInfo:
-            return 1
         case .etcInfo:
             return ectInfoDataList.count
         }
@@ -205,11 +201,13 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             switch sectionList[indexPath.section] {
             case .threeHoursInfo:
                 headerView.titleLabel.text = "3시간 간격의 일기예보"
+                headerView.iconImage.isHidden = false
             case .fiveDaysInfo:
                 headerView.titleLabel.text = "5일간의 일기예보"
-            case .etcInfo, .locationInfo:
-                headerView.titleLabel.text = ""
+                headerView.iconImage.isHidden = false
             default:
+                headerView.titleLabel.text = ""
+                headerView.iconImage.isHidden = true
                 break
             }
             return headerView
