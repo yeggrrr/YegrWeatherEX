@@ -21,7 +21,6 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureLocation()
     }
     
     override func configureHierarchy() {
@@ -35,43 +34,46 @@ class MapViewController: BaseViewController {
     }
     
     override func configureUI() {
+        mapView.myLocationButton.addTarget(self, action: #selector(myLocationButtonClicked), for: .touchUpInside)
         mapView.xButton.addTarget(self, action: #selector(xButtonClicked), for: .touchUpInside)
-    }
-    
-    func configureLocation() {
         locationManager.delegate = self
-        mapView.mapview.showsUserLocation = true
-        mapView.mapview.setUserTrackingMode(.follow, animated: true)
     }
     
     func setLocation(latitude: Double, longitude: Double, name: String ) {
         let currentLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        mapView.mapview.region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 400, longitudinalMeters: 400)
-        
         let annotation = MKPointAnnotation()
+        
+        self.mapView.mapview.region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 200, longitudinalMeters: 200)
         annotation.coordinate = currentLocation
         annotation.title = "\(name)"
-        mapView.mapview.addAnnotation(annotation)
+        self.mapView.mapview.addAnnotation(annotation)
     }
     
     @objc func xButtonClicked() {
         dismiss(animated: true)
     }
+    
+    @objc func myLocationButtonClicked()  {
+        guard let locationStatus = locationStatus else { return }
+        switch locationStatus {
+        case .notDetermined, .restricted, .denied:
+            alert(
+                title: "위치 서비스를 사용할 수 없습니다.",
+                message: "'설정 > 개인정보 보호'에서\n위치 서비스를 켜주세요.(필수권한)",
+                cancelHandler: UIAlertAction(title: "취소", style: .cancel),
+                okHandler: UIAlertAction( title: "설정으로 이동", style: .default) { _ in
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                    UIApplication.shared.open(url)
+                }
+            )
+        default:
+            guard let mycoordinate = mycoordinate else { return }
+            setRegionAndAnnotation(center: mycoordinate)
+        }
+    }
 }
 
 extension MapViewController {
-    func checkDeviceLocationAuthorization() {
-        DispatchQueue.global().async {
-            if CLLocationManager.locationServicesEnabled() {
-                self.checkCurrentLocationAuthorization()
-            } else {
-                self.alert(title: "위치 서비스가 꺼져 있어서, 위치 권한을 요청할 수 없습니다.", message: "", cancelHandler: UIAlertAction(title: "취소", style: .cancel), okHandler: UIAlertAction(title: "설정으로 이동", style: .default, handler: { _ in
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                }))
-            }
-        }
-    }
-    
     func checkCurrentLocationAuthorization() {
         if #available(iOS 14.0, *) {
             locationStatus = locationManager.authorizationStatus
@@ -79,34 +81,34 @@ extension MapViewController {
             locationStatus = CLLocationManager.authorizationStatus()
         }
         
-        switch locationStatus {
+        switch self.locationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            self.locationManager.startUpdatingLocation()
+            self.mapView.mapview.showsUserLocation = true
         case .notDetermined:
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestWhenInUseAuthorization()
         case .denied:
-            setLocation(latitude: 37.517742, longitude: 126.886463, name: "SeSAC 영등포 캠퍼스")
-        case .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
+            self.setLocation(latitude: 37.517742, longitude: 126.886463, name: "SeSAC 영등포 캠퍼스")
         default:
-            print(#function)
+            break
         }
     }
     
     func setRegionAndAnnotation(center: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 300, longitudinalMeters: 300)
-        mapView.mapview.setRegion(region, animated: true)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.mapView.mapview.setRegion(region, animated: true)
     }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coordinate = locations.last?.coordinate {
-            print(">>> \(coordinate.latitude), \(coordinate.longitude)")
-            setRegionAndAnnotation(center: coordinate)
-            mycoordinate = coordinate
+            self.setRegionAndAnnotation(center: coordinate)
+            self.mycoordinate = coordinate
         }
         
-        locationManager.stopUpdatingLocation()
+        self.locationManager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
@@ -115,7 +117,7 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(#function, "iOS14-")
-        checkDeviceLocationAuthorization()
+        checkCurrentLocationAuthorization()
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

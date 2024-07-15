@@ -11,6 +11,7 @@ import MapKit
 
 class MapView: UIView {
     let backgroundImage = UIImageView()
+    let myLocationButton = UIButton(type: .system)
     let xButton = UIButton(type: .system)
     let mapview = MKMapView()
     
@@ -28,6 +29,7 @@ class MapView: UIView {
     
     func configureHierarchy() {
         addSubview(backgroundImage)
+        addSubview(myLocationButton)
         addSubview(xButton)
         addSubview(mapview)
     }
@@ -39,8 +41,13 @@ class MapView: UIView {
             $0.edges.equalToSuperview()
         }
         
+        myLocationButton.snp.makeConstraints {
+            $0.top.leading.equalTo(safeArea).inset(20)
+            $0.height.width.equalTo(30)
+        }
+        
         xButton.snp.makeConstraints {
-            $0.top.trailing.equalTo(safeArea).inset(10)
+            $0.top.trailing.equalTo(safeArea).inset(20)
             $0.height.width.equalTo(30)
         }
         
@@ -52,6 +59,9 @@ class MapView: UIView {
     
     func configureUI() {
         backgroundImage.image = UIImage(named: "weatherBackgroundDark")
+        
+        myLocationButton.setImage(UIImage(systemName: "location"), for: .normal)
+        myLocationButton.tintColor = .white
         
         xButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         xButton.tintColor = .white

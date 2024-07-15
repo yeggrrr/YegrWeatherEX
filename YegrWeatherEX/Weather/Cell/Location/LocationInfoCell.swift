@@ -46,7 +46,7 @@ class LocationInfoCell: BaseCollectionViewCell {
     }
     
     func createAnnotaion(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
-        mapView.region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 300, longitudinalMeters: 300)
+        mapView.region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
