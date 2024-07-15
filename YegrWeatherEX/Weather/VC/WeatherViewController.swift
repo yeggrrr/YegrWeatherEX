@@ -53,8 +53,6 @@ class WeatherViewController: BaseViewController {
         configureCollectionView()
         configureUI()
         configureAction()
-        
-        CityRepository.shared.findFilePath()
     }
     
     override func viewWillAppear(_ animated: Bool) {
