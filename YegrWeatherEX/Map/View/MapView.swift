@@ -9,32 +9,20 @@ import UIKit
 import SnapKit
 import MapKit
 
-final class MapView: UIView {
+final class MapView: BaseView {
     private let backgroundImage = UIImageView()
     let myLocationButton = UIButton(type: .system)
     let xButton = UIButton(type: .system)
     let mapview = MKMapView()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configureHierarchy()
-        configureLayout()
-        configureUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(backgroundImage)
         addSubview(myLocationButton)
         addSubview(xButton)
         addSubview(mapview)
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         let safeArea = safeAreaLayoutGuide
         
         backgroundImage.snp.makeConstraints {
@@ -57,7 +45,7 @@ final class MapView: UIView {
         }
     }
     
-    private func configureUI() {
+    override func configureUI() {
         backgroundImage.image = UIImage(named: "weatherBackgroundDark")
         
         myLocationButton.setImage(UIImage(systemName: "location"), for: .normal)

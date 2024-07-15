@@ -8,32 +8,20 @@
 import UIKit
 import SnapKit
 
-final class WeatherView: UIView {
+final class WeatherView: BaseView {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     private let bottomButtonView = UIView()
     let mapButton = UIButton(type: .system)
     let detailButton = UIButton(type: .system)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configureHierarchy()
-        configureLayout()
-        configureUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(collectionView)
         addSubview(bottomButtonView)
         bottomButtonView.addSubview(mapButton)
         bottomButtonView.addSubview(detailButton)
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         let safeArea = safeAreaLayoutGuide
         collectionView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeArea)
@@ -58,7 +46,7 @@ final class WeatherView: UIView {
         }
     }
     
-    private func configureUI() {
+    override func configureUI() {
         mapButton.setImage(UIImage(systemName: "map"), for: .normal)
         mapButton.tintColor = .white
         
