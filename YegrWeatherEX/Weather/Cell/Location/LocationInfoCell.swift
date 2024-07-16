@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 
 final class LocationInfoCell: BaseCollectionViewCell {
+    private let iconImage = UIImageView()
     let titleLabel = UILabel()
     private let mapView = MKMapView()
     
@@ -23,13 +24,21 @@ final class LocationInfoCell: BaseCollectionViewCell {
     }
     
     override func configureHierarchy() {
+        contentView.addSubview(iconImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(mapView)
     }
     
     override func configureLayout() {
+        iconImage.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+            $0.leading.equalToSuperview().offset(10)
+            $0.height.width.equalTo(20)
+        }
+        
         titleLabel.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview().inset(10)
+            $0.top.trailing.equalToSuperview().inset(10)
+            $0.leading.equalTo(iconImage.snp.trailing).offset(5)
             $0.bottom.equalTo(mapView.snp.top).inset(-10)
         }
         
@@ -39,6 +48,9 @@ final class LocationInfoCell: BaseCollectionViewCell {
     }
     
     override func configureUI() {
+        iconImage.image = UIImage(systemName: "location.circle.fill")
+        iconImage.tintColor = .white
+        
         titleLabel.text = "위치"
         titleLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold))
         
