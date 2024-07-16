@@ -31,7 +31,7 @@ final class ThreeHoursInfoInnerCell: BaseCollectionViewCell {
         weatherImage.snp.makeConstraints {
             $0.top.equalTo(timeLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(timeLabel.snp.centerX)
-            $0.height.width.equalTo(40)
+            $0.height.width.equalTo(50)
         }
         
         tempLabel.snp.makeConstraints {

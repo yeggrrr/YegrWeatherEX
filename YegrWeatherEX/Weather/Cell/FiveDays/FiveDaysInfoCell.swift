@@ -34,7 +34,7 @@ final class FiveDaysInfoCell: BaseCollectionViewCell {
         weatherImage.snp.makeConstraints {
             $0.leading.equalTo(dateLabel.snp.trailing).offset(20)
             $0.centerY.equalTo(safeArea.snp.centerY)
-            $0.width.height.equalTo(30)
+            $0.width.height.equalTo(50)
         }
         
         lowestTempLabel.snp.makeConstraints {

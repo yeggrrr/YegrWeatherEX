@@ -46,8 +46,8 @@ final class SearchCityViewController: BaseViewController {
     }
     
     private func bindData() {
-        searchCityViewModel.outputSearhList.bind { _ in
-            self.searchCityView.cityTableView.reloadData()
+        searchCityViewModel.outputSearhList.bind { [weak self] _ in
+            self?.searchCityView.cityTableView.reloadData()
         }
     }
     
