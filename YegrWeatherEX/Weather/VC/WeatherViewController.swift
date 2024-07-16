@@ -46,6 +46,10 @@ final class WeatherViewController: BaseViewController {
         let secondDetailInfo: String
     }
     
+    deinit {
+        print(">>> WeatherViewController deinit")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,17 +87,22 @@ final class WeatherViewController: BaseViewController {
     
     private func bindData() {
         weatherViewModel.inputViewDidLoadTrigger.value = ()
-        weatherViewModel.outputWeatherData.bind { weatherData in
-            self.setCurrentData(data: weatherData)
-            self.setEtcInfoData(data: weatherData)
+        
+        weatherViewModel.outputWeatherData.bind { [weak self] weatherData in
+            self?.setCurrentData(data: weatherData)
+            self?.setEtcInfoData(data: weatherData)
         }
         
-        weatherViewModel.outputThreeDaysData.bind { _ in
-            self.weatherView.collectionView.reloadSections(IndexSet(integer: 1))
+        weatherViewModel.outputThreeDaysData.bind { [weak self] _ in
+            self?.weatherView.collectionView.reloadSections(IndexSet(integer: 1))
         }
         
-        weatherViewModel.outputTotalWeatherData.bind { _ in
-            self.weatherView.collectionView.reloadSections(IndexSet(integer: 2))
+        weatherViewModel.outputTotalWeatherData.bind { [weak self] _ in
+            self?.weatherView.collectionView.reloadSections(IndexSet(integer: 2))
+        }
+        
+        weatherViewModel.outputWeatherMaxMinData.bind { [weak self] _ in
+            self?.weatherView.collectionView.reloadSections(IndexSet(integer: 2))
         }
     }
     
@@ -249,8 +258,15 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         case .fiveDaysInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiveDaysInfoCell.id, for: indexPath) as? FiveDaysInfoCell else { return UICollectionViewCell() }
             guard let day = weatherViewModel.outputTotalWeatherData.value[indexPath.item].first else { return cell }
-            cell.lowestTempLabel.text = "최저 \(Int(day.main.tempMin))º"
-            cell.highestTempLabel.text = "최고 \(Int(day.main.tempMax))º"
+            if weatherViewModel.outputTotalWeatherData.value.count == weatherViewModel.outputWeatherMaxMinData.value.count {
+                if let tempMax = weatherViewModel.outputWeatherMaxMinData.value[indexPath.item]?.0 {
+                    cell.highestTempLabel.text = "최고 \(Int(tempMax))º"
+                }
+                if let tempMin = weatherViewModel.outputWeatherMaxMinData.value[indexPath.item]?.1 {
+                    cell.lowestTempLabel.text = "최저 \(Int(tempMin))º"
+                }
+            }
+            
             cell.setImage(iconName: day.weather.first?.icon)
             let targetDate = DateFormatter.longToShortDate(dateString: day.dateText)
             let todayDate = DateFormatter.onlyDateFormatter.string(from: Date())
