@@ -30,22 +30,6 @@ final class WeatherViewController: BaseViewController {
         case etcInfo
     }
     
-    private struct CurrentInfoData {
-        let location: String
-        let currentTemp: String
-        let currentWeather: String
-        let highestTemp: String
-        let lowestTemp: String
-        let divider: String
-    }
-    
-    private struct EtcInfoData {
-        let title: String
-        let description: String
-        let firstDetailInfo: String
-        let secondDetailInfo: String
-    }
-    
     deinit {
         print(">>> WeatherViewController deinit")
     }
