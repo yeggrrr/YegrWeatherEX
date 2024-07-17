@@ -35,8 +35,8 @@ final class EtcInfoCell: BaseCollectionViewCell {
         contentView.layer.cornerRadius = 15
         
         verticalStackView.setUI(asisSV: .vertical, spacingSV: 10, alignmentSV: .fill, distributionSV: .fillProportionally)
-        titleLabel.setUI(txtColor: .lightText, txtAlignment: .left, fontStyle: .systemFont(ofSize: 20, weight: .semibold))
-        descriptionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 40, weight: .medium))
+        titleLabel.setUI(txtColor: .lightText, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .semibold))
+        descriptionLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 35, weight: .medium))
         firstDetailInfoLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 15, weight: .regular))
         secondDetailInfoLabel.setUI(txtColor: .white, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .regular))
     }
