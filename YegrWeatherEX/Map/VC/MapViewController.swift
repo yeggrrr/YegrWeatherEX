@@ -18,10 +18,6 @@ final class MapViewController: BaseViewController {
     private var locationStatus: CLAuthorizationStatus?
     private var mycoordinate: CLLocationCoordinate2D?
     
-    deinit {
-        print(">>> MapViewController deinit")
-    }
-    
     override func loadView() {
         view = mapView
     }

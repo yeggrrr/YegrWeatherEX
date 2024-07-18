@@ -16,12 +16,7 @@ final class WeatherViewModel {
     var outputWeatherMaxMinData: Observable<[(Double, Double)?]> = Observable([])
     
     init() {
-        print(">>> WeatherViewModel init")
         transform()
-    }
-    
-    deinit {
-        print(">>> WeatherViewModel deinit")
     }
     
     private func transform() {

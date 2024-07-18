@@ -12,14 +12,8 @@ final class SearchCityViewModel {
     var outputSearhList: Observable<[City]> = Observable([])
     
     init() {
-        print(">>> SearchCityViewModel init")
-        
         inputSearchList.bind { [weak self] city in
             self?.outputSearhList.value = city
         }
-    }
-    
-    deinit {
-        print(">>> SearchCityViewModel deinit")
     }
 }

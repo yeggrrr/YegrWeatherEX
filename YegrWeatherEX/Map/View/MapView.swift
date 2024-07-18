@@ -15,10 +15,6 @@ final class MapView: BaseView {
     let xButton = UIButton(type: .system)
     let mapview = MKMapView()
     
-    deinit {
-        print(">>> MapView deinit")
-    }
-    
     override func configureHierarchy() {
         addSubview(backgroundImage)
         addSubview(myLocationButton)

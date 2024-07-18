@@ -30,10 +30,6 @@ final class WeatherViewController: BaseViewController {
         case etcInfo
     }
     
-    deinit {
-        print(">>> WeatherViewController deinit")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
