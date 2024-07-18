@@ -15,6 +15,9 @@ final class WeatherViewModel {
     var outputTotalWeatherData: Observable<[[ThreeHoursFiveDaysWeatherData.List]]> = Observable([[]])
     var outputWeatherMaxMinData: Observable<[(Double, Double)?]> = Observable([])
     
+    var currentInfoData: CurrentInfoData?
+    var ectInfoDataList: [EtcInfoData] = []
+    
     init() {
         transform()
     }
@@ -95,5 +98,46 @@ final class WeatherViewModel {
         }
         
         return nil
+    }
+    
+    func setCurrentData(data: CurrentWeatherData?) {
+        guard let data = data else { return }
+        guard let firstWeather = data.weather.first else { return }
+        currentInfoData = CurrentInfoData(
+            location: data.name,
+            currentTemp: " \(Int(data.main.temp))º",
+            currentWeather: firstWeather.description,
+            highestTemp: "최고: \(Int(data.main.tempMax))º",
+            lowestTemp: "최저: \(Int(data.main.tempMin))º",
+            divider: "|")
+    }
+    
+    func setEtcInfoData(data: CurrentWeatherData?) {
+        guard let data = data else { return }
+        let windSpeed = EtcInfoData(
+            title: "바람 속도",
+            description: "\(data.wind.speed)m/s",
+            firstDetailInfo: "",
+            secondDetailInfo: "")
+        
+        let cloud = EtcInfoData(
+            title: "구름",
+            description: "\(data.clouds.all)%",
+            firstDetailInfo: "",
+            secondDetailInfo: "")
+        
+        let pressure = EtcInfoData(
+            title: "기압",
+            description: "\(Int(data.main.pressure))",
+            firstDetailInfo: "hps",
+            secondDetailInfo: "")
+        
+        let humidity = EtcInfoData(
+            title: "습도",
+            description: "\(Int(data.main.humidity))%",
+            firstDetailInfo: "",
+            secondDetailInfo: "")
+        
+        ectInfoDataList = [windSpeed, cloud, pressure, humidity]
     }
 }

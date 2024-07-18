@@ -18,8 +18,6 @@ final class WeatherViewController: BaseViewController {
     
     private let sectionList: [SectionType] = [.currentInfo, .threeHoursInfo, .fiveDaysInfo, .locationInfo, .etcInfo]
     
-    private var currentInfoData: CurrentInfoData?
-    private var ectInfoDataList: [EtcInfoData] = []
     private var mycoordinate: CLLocationCoordinate2D?
     
     private enum SectionType {
@@ -63,8 +61,10 @@ final class WeatherViewController: BaseViewController {
         weatherViewModel.inputViewDidLoadTrigger.value = ()
         
         weatherViewModel.outputWeatherData.bind { [weak self] weatherData in
-            self?.setCurrentData(data: weatherData)
-            self?.setEtcInfoData(data: weatherData)
+            self?.weatherViewModel.setCurrentData(data: weatherData)
+            self?.weatherView.collectionView.reloadSections(IndexSet(integer: 0))
+            self?.weatherViewModel.setEtcInfoData(data: weatherData)
+            self?.weatherView.collectionView.reloadSections(IndexSet(integer: 4))
         }
         
         weatherViewModel.outputThreeDaysData.bind { [weak self] _ in
@@ -78,49 +78,6 @@ final class WeatherViewController: BaseViewController {
         weatherViewModel.outputWeatherMaxMinData.bind { [weak self] _ in
             self?.weatherView.collectionView.reloadSections(IndexSet(integer: 2))
         }
-    }
-    
-    private func setCurrentData(data: CurrentWeatherData?) {
-        guard let data = data else { return }
-        guard let firstWeather = data.weather.first else { return }
-        currentInfoData = CurrentInfoData(
-            location: data.name,
-            currentTemp: " \(Int(data.main.temp))º",
-            currentWeather: firstWeather.description,
-            highestTemp: "최고: \(Int(data.main.tempMax))º",
-            lowestTemp: "최저: \(Int(data.main.tempMin))º",
-            divider: "|")
-        self.weatherView.collectionView.reloadSections(IndexSet(integer: 0))
-    }
-    
-    private func setEtcInfoData(data: CurrentWeatherData?) {
-        guard let data = data else { return }
-        let windSpeed = EtcInfoData(
-            title: "바람 속도",
-            description: "\(data.wind.speed)m/s",
-            firstDetailInfo: "",
-            secondDetailInfo: "")
-        
-        let cloud = EtcInfoData(
-            title: "구름",
-            description: "\(data.clouds.all)%",
-            firstDetailInfo: "",
-            secondDetailInfo: "")
-        
-        let pressure = EtcInfoData(
-            title: "기압",
-            description: "\(Int(data.main.pressure))",
-            firstDetailInfo: "hps",
-            secondDetailInfo: "")
-        
-        let humidity = EtcInfoData(
-            title: "습도",
-            description: "\(Int(data.main.humidity))%",
-            firstDetailInfo: "",
-            secondDetailInfo: "")
-        
-        ectInfoDataList = [windSpeed, cloud, pressure, humidity]
-        self.weatherView.collectionView.reloadSections(IndexSet(integer: 4))
     }
     
     private func getCityData() {
@@ -173,7 +130,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         case .fiveDaysInfo:
             return weatherViewModel.outputTotalWeatherData.value.count
         case .etcInfo:
-            return ectInfoDataList.count
+            return weatherViewModel.ectInfoDataList.count
         }
     }
     
@@ -216,13 +173,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         switch sectionList[indexPath.section] {
         case .currentInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrentInfoCell.id, for: indexPath) as? CurrentInfoCell else { return UICollectionViewCell() }
-            guard let currentInfoData = currentInfoData else { return cell }
-            cell.todayView.locationLabel.text = currentInfoData.location
-            cell.todayView.currentTempLabel.text = currentInfoData.currentTemp
-            cell.todayView.currentWeatherLabel.text = currentInfoData.currentWeather
-            cell.todayView.highestTempLabel.text = currentInfoData.highestTemp
-            cell.todayView.lowestTempLabel.text = currentInfoData.lowestTemp
-            cell.todayView.dividerLabel.text = currentInfoData.divider
+            guard let currentInfoData = weatherViewModel.currentInfoData else { return cell }
+            cell.configureCell(currentInfoData: currentInfoData)
             return cell
         case .threeHoursInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThreeHoursInfoCell.id, for: indexPath) as? ThreeHoursInfoCell else { return UICollectionViewCell() }
@@ -255,7 +207,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         case .etcInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EtcInfoCell.id, for: indexPath) as? EtcInfoCell else { return UICollectionViewCell() }
-            let item = ectInfoDataList[indexPath.item]
+            let item = weatherViewModel.ectInfoDataList[indexPath.item]
             cell.titleLabel.text = item.title
             cell.descriptionLabel.text = item.description
             cell.firstDetailInfoLabel.text = item.firstDetailInfo

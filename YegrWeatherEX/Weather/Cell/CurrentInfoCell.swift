@@ -21,4 +21,13 @@ final class CurrentInfoCell: BaseCollectionViewCell {
             $0.edges.equalTo(safeArea)
         }
     }
+    
+    func configureCell(currentInfoData:  CurrentInfoData) {
+        todayView.locationLabel.text = currentInfoData.location
+        todayView.currentTempLabel.text = currentInfoData.currentTemp
+        todayView.currentWeatherLabel.text = currentInfoData.currentWeather
+        todayView.highestTempLabel.text = currentInfoData.highestTemp
+        todayView.lowestTempLabel.text = currentInfoData.lowestTemp
+        todayView.dividerLabel.text = currentInfoData.divider
+    }
 }
