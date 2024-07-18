@@ -141,10 +141,11 @@ extension SearchCityViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchCityViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty || searchCityViewModel.inputSearchList.value.isEmpty {
-            searchCityViewModel.inputSearchList.value = cityList
+        
+        if !searchText.isEmpty {
+            searchCityViewModel.inputSearchList.value = cityList.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         } else {
-            searchCityViewModel.inputSearchList.value = cityList.filter { $0.name.contains(searchText.lowercased()) }
+            searchCityViewModel.inputSearchList.value = cityList
         }
     }
     
