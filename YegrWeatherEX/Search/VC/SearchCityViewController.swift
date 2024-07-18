@@ -26,16 +26,6 @@ final class SearchCityViewController: BaseViewController {
         bindData()
     }
     
-    deinit {
-        print(">>> SearchCityViewController deinit")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        delegate?.reloadCityInfo()
-    }
-    
     override func loadView() {
         view = searchCityView
     }
