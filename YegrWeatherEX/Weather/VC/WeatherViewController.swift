@@ -43,12 +43,6 @@ final class WeatherViewController: BaseViewController {
         configureAction()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getCityData()
-    }
-    
     override func configureHierarchy() {
         view.addSubview(backgroundImage)
         view.addSubview(weatherView)
@@ -303,5 +297,6 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension WeatherViewController: CityDelegate {
     func reloadCityInfo() {
         getCityData()
+        self.weatherView.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
 }

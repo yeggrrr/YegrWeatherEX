@@ -26,7 +26,12 @@ final class WeatherViewModel {
     
     private func transform() {
         inputViewDidLoadTrigger.bind { _ in
-            self.callRequest(id: 1835847)
+            if CityRepository.shared.fetch().isEmpty {
+                self.callRequest(id: 1835847)
+            } else {
+                guard let city = CityRepository.shared.fetch().first else { return }
+                self.callRequest(id: city.cityId)
+            }
         }
     }
     
