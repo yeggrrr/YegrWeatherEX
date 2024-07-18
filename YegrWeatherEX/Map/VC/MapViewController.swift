@@ -22,19 +22,8 @@ final class MapViewController: BaseViewController {
         print(">>> MapViewController deinit")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    override func configureHierarchy() {
-        view.addSubview(mapView)
-    }
-    
-    override func configureLayout() {
-        mapView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+    override func loadView() {
+        view = mapView
     }
     
     override func configureUI() {

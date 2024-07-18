@@ -21,6 +21,7 @@ final class SearchCityViewController: BaseViewController {
         
         configureTableView()
         configureSearchBar()
+        configureAction()
         getCityList()
         bindData()
     }
@@ -35,17 +36,11 @@ final class SearchCityViewController: BaseViewController {
         delegate?.reloadCityInfo()
     }
     
-    override func configureHierarchy() {
-        view.addSubview(searchCityView)
+    override func loadView() {
+        view = searchCityView
     }
     
-    override func configureLayout() {
-        searchCityView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
-    override func configureUI() {
+    func configureAction() {
         searchCityView.dismissButton.addTarget(self, action: #selector(dismissButtonClicked), for: .touchUpInside)
     }
     
