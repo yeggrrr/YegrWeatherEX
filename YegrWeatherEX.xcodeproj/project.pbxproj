@@ -162,7 +162,6 @@
 				6800829C2C3E64C900ADD884 /* LaunchScreen.storyboard */,
 				6800832E2C42D26400ADD884 /* DataBase */,
 				680082BF2C3EC36500ADD884 /* API */,
-				680082F52C3FD23600ADD884 /* Model */,
 				680082C02C3EC37600ADD884 /* Extension */,
 				680082FA2C4102C300ADD884 /* Observable */,
 				680082C12C3EC79B00ADD884 /* Base */,
@@ -180,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				680083482C42FD0800ADD884 /* ViewModel */,
-				680083472C42FD0100ADD884 /* VC */,
 				682726902C480F8D005BA882 /* CustomModel */,
+				680083472C42FD0100ADD884 /* VC */,
 				680082D32C3EE88A00ADD884 /* View */,
 				680082D42C3EE88F00ADD884 /* Cell */,
 			);
@@ -191,6 +190,7 @@
 		680082BF2C3EC36500ADD884 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				680082F52C3FD23600ADD884 /* Model */,
 				680082F12C3FCDD600ADD884 /* APICall.swift */,
 				680082F32C3FD02000ADD884 /* APIRequest.swift */,
 			);
@@ -226,6 +226,7 @@
 			children = (
 				6800832A2C42C32900ADD884 /* WeatherView.swift */,
 				6800831B2C42B46500ADD884 /* TodayView.swift */,
+				6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,12 +234,12 @@
 		680082D42C3EE88F00ADD884 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				680083412C42FC6100ADD884 /* Header */,
-				680083422C42FC6F00ADD884 /* Current */,
-				680083432C42FC7800ADD884 /* ThreeHours */,
-				680083442C42FC9D00ADD884 /* FiveDays */,
-				680083452C42FCA900ADD884 /* Location */,
-				680083462C42FCB200ADD884 /* Etc */,
+				6800831E2C42B55E00ADD884 /* CurrentInfoCell.swift */,
+				680083202C42B58900ADD884 /* ThreeHoursInfoCell.swift */,
+				6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */,
+				680083222C42B59900ADD884 /* FiveDaysInfoCell.swift */,
+				680083242C42B5A500ADD884 /* LocationInfoCell.swift */,
+				680083262C42B5B100ADD884 /* EtcInfoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -279,55 +280,6 @@
 				6800833D2C42D4AA00ADD884 /* CityRepository.swift */,
 			);
 			path = DataBase;
-			sourceTree = "<group>";
-		};
-		680083412C42FC6100ADD884 /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				6800833F2C42FB6500ADD884 /* WeatherSectionHeaderView.swift */,
-			);
-			path = Header;
-			sourceTree = "<group>";
-		};
-		680083422C42FC6F00ADD884 /* Current */ = {
-			isa = PBXGroup;
-			children = (
-				6800831E2C42B55E00ADD884 /* CurrentInfoCell.swift */,
-			);
-			path = Current;
-			sourceTree = "<group>";
-		};
-		680083432C42FC7800ADD884 /* ThreeHours */ = {
-			isa = PBXGroup;
-			children = (
-				680083202C42B58900ADD884 /* ThreeHoursInfoCell.swift */,
-				6800832C2C42C6E200ADD884 /* ThreeHoursInfoInnerCell.swift */,
-			);
-			path = ThreeHours;
-			sourceTree = "<group>";
-		};
-		680083442C42FC9D00ADD884 /* FiveDays */ = {
-			isa = PBXGroup;
-			children = (
-				680083222C42B59900ADD884 /* FiveDaysInfoCell.swift */,
-			);
-			path = FiveDays;
-			sourceTree = "<group>";
-		};
-		680083452C42FCA900ADD884 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				680083242C42B5A500ADD884 /* LocationInfoCell.swift */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		680083462C42FCB200ADD884 /* Etc */ = {
-			isa = PBXGroup;
-			children = (
-				680083262C42B5B100ADD884 /* EtcInfoCell.swift */,
-			);
-			path = Etc;
 			sourceTree = "<group>";
 		};
 		680083472C42FD0100ADD884 /* VC */ = {
